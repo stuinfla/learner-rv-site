@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0a0e1a;
+  --bg2: #111627;
+  --fg: #e8ecf3;
+  --fg-mute: #8b95ad;
+  --accent: #38bdf8;
+  --accent-hot: #f97316;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+code, pre {
+  font-family: 'Cascadia Code', 'Fira Code', Consolas, monospace;
+}
