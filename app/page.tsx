@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const LEARN_RV_VERSION = "v0.2.19";
+const LEARN_RV_VERSION = "v0.2.20";
 const BRIDGE = "http://127.0.0.1:7878";
 
 type BridgeState = "checking" | "offline" | "online";
