@@ -112,7 +112,7 @@ function Hero() {
               Your <span className="cream">Cognitum Seed</span> turns hours of video into the <em className="cream italic" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>expert</em> you wish you were.
             </h1>
             <p className="mt-7 text-[17px] leading-[1.65] text-slate-300 max-w-[52ch]">
-              Point it at a YouTube channel before bed. Your Seed watches every video, distills every insight, and stores it the way <em className="text-amber-300 not-italic">your brain</em> does — as vectors, not files. You wake up. You ask. It answers, cited, in milliseconds.
+              Hand your Seed the four best YouTube channels on day-trading-with-AI, or retirement planning at 45, or 6-week solo travel through Southeast Asia. It watches all <em className="text-amber-300 not-italic">fifteen-plus hours</em>, distills what every expert agrees and disagrees on, and stores it the way your brain does — as vectors. You wake up. You ask. It answers, cited.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#brain" className="inline-flex items-center gap-2 px-6 py-3.5 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
@@ -147,15 +147,15 @@ function Story() {
           <div className="lg:col-span-5">
             <Eyebrow warm>THE PITCH</Eyebrow>
             <h2 className="display mt-5 text-[34px] sm:text-[44px] leading-[1.05] font-normal text-slate-50">
-              You can already paste a PDF into ChatGPT.
+              ChatGPT can read a PDF.
               <br/>
-              <em className="cream italic">This isn&rsquo;t that.</em>
+              <em className="cream italic">That&rsquo;s not what this is for.</em>
             </h2>
           </div>
           <div className="lg:col-span-7 text-[17px] leading-[1.75] text-slate-300 space-y-5">
-            <p>This is the device that can sit on your desk for a year, watch every Stanford lecture, every Andrew Huberman episode, every conference talk in your industry — and remember it the way you wish you could.</p>
-            <p>You don&rsquo;t curate a folder of PDFs and dump it into a chat window. You point your Seed at <em className="text-amber-300 not-italic">a topic that matters to you</em> and walk away. It does the watching, the listening, the reading. It builds a personal expert by morning.</p>
-            <p>Then it answers — citing the exact timestamp in the exact video — until you know the field better than people who have been working in it for years.</p>
+            <p>This is for the topics where the answer lives across <em className="text-amber-300 not-italic">five different experts and forty hours of YouTube</em>. Retirement planning at 45. Day trading with AI to beat the retail average. Building a 10kW DIY solar install. Six weeks across Southeast Asia under $4k.</p>
+            <p>The kind of question where you&rsquo;d need to watch a dozen long videos, take notes, cross-reference what disagrees, and remember it months later. Your Seed does that. It does the watching, the synthesizing, and the remembering — so you do the thinking.</p>
+            <p>Then it answers — citing the exact timestamp in the exact video — until you know the field better than the people who&rsquo;ve been selling courses about it.</p>
           </div>
         </div>
       </div>
