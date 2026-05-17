@@ -36,56 +36,56 @@ type StarterTopic = {
   firstQuestion: string;
 };
 
-// Each starter uses a SINGLE channel/playlist URL that's deep enough
-// that --limit 20 (set by the bridge) gives ~10-20 hours of content.
+// Each starter pulls ~7 videos from each of 3 expert channels (21 total).
+// The bridge splits the comma-separated source list and ingests sequentially.
 const STARTERS: StarterTopic[] = [
   {
     slug: "retirement-planning-at-45",
     title: "Retirement planning at 45 · own the math, not the salesperson",
-    blurb: "20 episodes of Rob Berger's fee-only-advisor breakdowns. Stop paying 1% AUM to someone repeating talking points.",
-    source: "https://www.youtube.com/@RobBerger",
+    blurb: "Synthesize 3 fee-only-advisor channels — Rob Berger, The Money Guys, Ramsey — on what the math actually says, not what someone selling AUM tells you.",
+    source: "https://www.youtube.com/@RobBerger,https://www.youtube.com/@TheMoneyGuyShow,https://www.youtube.com/@ramseyshow",
     emoji: "🏦",
-    firstQuestion: "If I have $400k in a 401k at 45 and want to retire at 60, what does the math actually say I need to save monthly?",
+    firstQuestion: "If I have $400k in a 401k at 45 and want to retire at 60, what do the three channels agree (and disagree) on for monthly savings rate?",
   },
   {
     slug: "day-trading-with-ai",
     title: "Day trading with AI · beating the retail average",
-    blurb: "20 episodes from a top trading analyst. Synthesize the edges that actually outperform — without the gurus selling courses.",
-    source: "https://www.youtube.com/@TheTradingChannel",
+    blurb: "Synthesize 3 trading channels — TheTradingChannel, Adam Khoo, Mark Meldrum — on the edges that consistently outperform.",
+    source: "https://www.youtube.com/@TheTradingChannel,https://www.youtube.com/@AdamKhoo,https://www.youtube.com/@MarkMeldrum",
     emoji: "📈",
-    firstQuestion: "Across the videos you watched, what's the single edge that separates traders who beat the S&P 500 from the 80% who don't?",
+    firstQuestion: "Across the three channels, what's the single edge they all agree separates the traders who beat the S&P 500 from the 80% who don't?",
   },
   {
     slug: "southeast-asia-6-weeks",
     title: "Solo travel · 6 weeks across SE Asia under $4k",
-    blurb: "20 trip-report videos from Kara & Nate. Real routes, real costs, real visa quirks from people who just did it.",
-    source: "https://www.youtube.com/@KaraandNate",
+    blurb: "Three travel-vlogger channels — Kara & Nate, Drew Binsky, Wolters World — synthesized into routes, costs, and visa quirks that actually worked.",
+    source: "https://www.youtube.com/@KaraandNate,https://www.youtube.com/@DrewBinsky,https://www.youtube.com/@WoltersWorld",
     emoji: "🌏",
-    firstQuestion: "What's the optimal order to do Thailand → Vietnam → Indonesia in October-November to chase good weather and skip the tourist crush?",
+    firstQuestion: "What's the optimal order to do Thailand → Vietnam → Indonesia in October-November to chase good weather and avoid the tourist crush?",
   },
   {
     slug: "ai-moat-for-solo-builders",
     title: "Gen AI as a moat · what you can sell that ChatGPT can't",
-    blurb: "20 YC interviews with indie hackers and small-team founders shipping AI products in 2026.",
-    source: "https://www.youtube.com/@ycombinator",
+    blurb: "YC interviews + Pieter Levels + Starter Story — synthesized into what indie hackers are actually charging money for in 2026.",
+    source: "https://www.youtube.com/@ycombinator,https://www.youtube.com/@levelsio,https://www.youtube.com/@StarterStoryShow",
     emoji: "🛠️",
     firstQuestion: "What kinds of AI products are indie builders actually charging real money for in 2026 — and which categories have already commoditized?",
   },
   {
     slug: "strength-after-40",
     title: "Strength training after 40 · without breaking yourself",
-    blurb: "20 of Jeff Nippard's evidence-based deep-dives. Programming, recovery, mobility — what changes after 40.",
-    source: "https://www.youtube.com/@JeffNippard",
+    blurb: "Three evidence-based coaches — Jeff Nippard, AthleanX, Renaissance Periodization — synthesized on volume, recovery, and what changes after 40.",
+    source: "https://www.youtube.com/@JeffNippard,https://www.youtube.com/@athleanx,https://www.youtube.com/@RenaissancePeriodization",
     emoji: "🏋️",
-    firstQuestion: "What's the right weekly volume for someone over 40 trying to add muscle without getting injured, based on the evidence?",
+    firstQuestion: "Where do the three coaches agree on weekly volume for someone over 40, and where do they disagree?",
   },
   {
     slug: "home-solar-suburbia",
     title: "DIY home solar + battery in suburbia",
-    blurb: "20 of Will Prowse's full system walk-throughs — sizing, inverter choice, permits — from someone who's wired hundreds of roofs.",
-    source: "https://www.youtube.com/@WillProwse",
+    blurb: "Will Prowse + DIY Solar Power + Signature Solar — three deep channels on sizing, inverter choice, and permits, from people who've wired hundreds of roofs.",
+    source: "https://www.youtube.com/@WillProwse,https://www.youtube.com/@DIYSolarPower,https://www.youtube.com/@SignatureSolar",
     emoji: "☀️",
-    firstQuestion: "What's the realistic total cost — panels + battery + inverter + permits — for a 10kW DIY install on a 2,400 sqft suburban home in 2026?",
+    firstQuestion: "Across the three channels, what's the realistic total cost for a 10kW DIY install on a 2,400 sqft suburban home, and what's the consensus payback period?",
   },
 ];
 
