@@ -2,7 +2,12 @@ node_modules
 .next
 out
 .DS_Store
+.env
+.env.*
 .env*.local
+# Belt-and-suspenders for the shared parent .env that lives at
+# "/Users/stuartkerr/Code/Video watcher skill/.env"
+**/.env
 .vercel
 *.tsbuildinfo
 next-env.d.ts

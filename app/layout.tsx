@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, Geist, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+  axes: ["opsz", "SOFT", "WONK"],
+});
+
+const geist = Geist({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
@@ -15,9 +22,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "learn-rv — your own AI, on a device you actually own",
+  title: "learn-rv — your Cognitum Seed becomes an expert, for you, while you sleep",
   description:
-    "Turn any video, podcast, or PDF into a private knowledge base that lives on your Cognitum One Seed. No cloud accounts. No monthly fees. Nothing leaves your hardware.",
+    "Point your Cognitum Seed at a YouTube channel before bed. It watches every video, distills every insight, and stores it the way your brain stores knowledge — as vectors. You wake up an expert.",
 };
 
 export default function RootLayout({
@@ -26,7 +33,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={`${fraunces.variable} ${geist.variable} ${mono.variable}`}>
       <body className="font-sans antialiased">
         <div aria-hidden className="fixed inset-0 -z-10 pointer-events-none"
              style={{

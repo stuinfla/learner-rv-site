@@ -22,6 +22,14 @@ code, pre, .mono {
   font-family: var(--font-mono), 'Cascadia Code', Consolas, monospace;
 }
 
+.display {
+  font-family: var(--font-display), Georgia, 'Times New Roman', serif;
+  font-feature-settings: "ss01", "ss03";
+}
+
+/* Cream highlight for editorial emphasis on serif italic words */
+.cream { color: #f5f1e8; }
+
 /* selection */
 ::selection {
   background: rgba(56, 189, 248, 0.25);
