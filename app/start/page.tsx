@@ -130,12 +130,14 @@ export default function Page() {
     <main className="min-h-screen text-slate-200">
       <Header bridge={bridge} />
       <div className="max-w-4xl mx-auto px-5 sm:px-6 pb-24">
-        {bridge === "checking" && <CheckingBridge />}
-        {bridge === "offline" && <Offline />}
-        {bridge === "online" && status && (
+        {/* Welcome ALWAYS shows first for new users, regardless of bridge state.
+            Only after they click "Start the tour" do we check the bridge. */}
+        {step === "welcome" && <WelcomeStep onContinue={finishWelcome} />}
+        {step !== "welcome" && bridge === "checking" && <CheckingBridge />}
+        {step !== "welcome" && bridge === "offline" && <Offline />}
+        {step !== "welcome" && bridge === "online" && status && (
           <>
-            {step === "welcome" && <WelcomeStep onContinue={finishWelcome} />}
-            {step !== "welcome" && <Progressbar step={step} />}
+            <Progressbar step={step} />
             {step === "seed" && (
               <SeedStep
                 status={status}
