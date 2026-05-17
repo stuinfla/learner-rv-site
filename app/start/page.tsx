@@ -204,23 +204,32 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
           FIRST · WHAT DID YOU JUST BUY?
         </div>
         <h2 className="display text-[34px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-6">
-          The thing on your desk is a tiny <em className="cream italic">computer with a brain</em>.
+          That little COGNITUM box is a tiny <em className="cream italic">computer with a brain</em>.
         </h2>
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-5">
             <div className="relative aspect-[3/4] rounded-md overflow-hidden border border-slate-800 bg-slate-900">
-              <Image src="/img/device-hero.png" alt="The Cognitum Seed — a small matte-black computing device with a single cyan LED."
-                fill className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
+              <Image src="/img/seed-product.png" alt="The Cognitum Seed — small dark module shown next to its retail box branded COGNITUM seed."
+                fill className="object-contain" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
             <div className="mt-3 mono text-[10px] uppercase tracking-widest text-slate-500 text-center">
-              the Cognitum One Seed · about the size of a deck of cards
+              your Cognitum Seed · the dark module under the box
             </div>
           </div>
           <div className="lg:col-span-7 space-y-4 text-[16px] leading-[1.7] text-slate-300">
-            <p>It&rsquo;s a small Linux computer with an <em className="text-amber-300 not-italic">AI brain</em> built in. Yours. It lives on your desk, sips power like a USB-charged toothbrush, and never asks for an account or a subscription.</p>
-            <p>It can do a few things, but the <em className="text-amber-300 not-italic">primary thing it does</em> — the one most people buy it for — is what we&rsquo;ll set up today.</p>
+            <p>That&rsquo;s it — the small dark module shown in the photo, with its retail box on top so you can tell the scale. It carries an <em className="text-amber-300 not-italic">AI brain</em> (vector database + local inference) and the ports to plug into your Mac. Lives on your desk. Yours. Never asks for an account or sends anything to a cloud.</p>
+            <p>It can do a few things, but the <em className="text-amber-300 not-italic">primary thing it does</em> — the one most people buy it for — is what we&rsquo;ll set up together right now.</p>
+            <details className="pt-2">
+              <summary className="mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition cursor-pointer inline-flex items-center gap-2">
+                <span className="inline-block w-3 h-px bg-current" /> wired into a Mac mini
+              </summary>
+              <div className="mt-4 relative aspect-square max-w-[320px] rounded-md overflow-hidden border border-slate-800">
+                <Image src="/img/seed-on-mac.png" alt="The Cognitum Seed dock sitting on top of a Mac Mini host."
+                  fill className="object-cover" sizes="320px" />
+              </div>
+            </details>
             <a href="https://cognitum.one" target="_blank" rel="noreferrer" className="mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition inline-flex items-center gap-2">
-              <span className="inline-block w-3 h-px bg-current" /> hardware details at cognitum.one
+              <span className="inline-block w-3 h-px bg-current" /> more at cognitum.one
             </a>
           </div>
         </div>
