@@ -81,34 +81,33 @@ function Hero() {
       <div className="relative max-w-[1280px] mx-auto px-5 sm:px-6 lg:px-12 pt-10 pb-20 lg:pt-20 lg:pb-28">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
 
-          {/* IMAGE first on mobile (order-1), second on desktop (lg:order-2) */}
-          <div className="lg:col-span-6 order-1 lg:order-2">
+          {/* IMAGE first on mobile (order-1), second on desktop (lg:order-2) — bigger + more cinematic */}
+          <div className="lg:col-span-7 order-1 lg:order-2">
             <figure className="relative">
-              <div className="relative aspect-[3/2] rounded-[6px] overflow-hidden border border-amber-500/20 shadow-2xl shadow-amber-900/30">
+              <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] rounded-[8px] overflow-hidden border border-amber-500/25 shadow-2xl shadow-amber-900/40 ring-1 ring-inset ring-amber-300/10">
                 <Image
                   src="/img/knowledge-absorbed.png"
                   alt="A Cognitum Seed device on a warm wooden desk, with luminous streams of video frames, audio waveforms and book pages cascading into it — knowledge being absorbed and stored as vectors."
                   fill
                   priority
                   className="object-cover"
-                  sizes="(min-width: 1024px) 48vw, 100vw"
+                  sizes="(min-width: 1024px) 56vw, 100vw"
                 />
-                <div className="absolute inset-0 ring-1 ring-inset ring-amber-300/15 pointer-events-none" />
                 {/* Floating mono label overlay — anchors what they're looking at */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950/80 to-transparent">
-                  <div className="mono text-[9px] uppercase tracking-widest text-amber-200 flex items-center gap-2">
-                    <span className="inline-block w-3 h-px bg-amber-300/60" />
-                    your Cognitum Seed absorbs videos · stores them as vectors
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent">
+                  <div className="mono text-[10px] uppercase tracking-widest text-amber-200 flex items-center gap-2">
+                    <span className="inline-block w-3 h-px bg-amber-300/70" />
+                    your Cognitum Seed absorbing 15+ hours of video · stored as vectors
                   </div>
                 </div>
               </div>
             </figure>
           </div>
 
-          {/* COPY second on mobile (order-2), first on desktop (lg:order-1) */}
-          <div className="lg:col-span-6 order-2 lg:order-1">
+          {/* COPY second on mobile (order-2), first on desktop (lg:order-1) — slightly narrower */}
+          <div className="lg:col-span-5 order-2 lg:order-1">
             <Eyebrow>FOR PEOPLE WHO JUST UNBOXED A COGNITUM ONE SEED</Eyebrow>
-            <h1 className="display mt-5 text-[34px] sm:text-[44px] lg:text-[60px] leading-[1.05] tracking-[-0.02em] text-slate-50 font-normal">
+            <h1 className="display mt-5 text-[32px] sm:text-[40px] lg:text-[52px] leading-[1.05] tracking-[-0.02em] text-slate-50 font-normal">
               Your <span className="cream">Cognitum Seed</span> turns hours of video into the <em className="cream italic" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>expert</em> you wish you were.
             </h1>
             <p className="mt-7 text-[17px] leading-[1.65] text-slate-300 max-w-[52ch]">

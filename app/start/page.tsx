@@ -2,12 +2,13 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { LEARN_RV_VERSION } from "../version";
 
 const BRIDGE = "http://127.0.0.1:7878";
 
 type BridgeState = "checking" | "offline" | "online";
-type Step = "seed" | "topic" | "ingest" | "wow" | "chat";
+type Step = "welcome" | "seed" | "topic" | "ingest" | "wow" | "chat";
 type Progress = { message: string; level: string; progress: number; done: boolean };
 
 type Topic = {
@@ -88,7 +89,11 @@ export default function Page() {
   const [bridge, setBridge] = useState<BridgeState>("checking");
   const [status, setStatus] = useState<Status | null>(null);
   const [topics, setTopics] = useState<Topic[]>([]);
-  const [step, setStep] = useState<Step>("seed");
+  // Default to welcome unless localStorage says we've onboarded
+  const [step, setStep] = useState<Step>(() => {
+    if (typeof window === "undefined") return "welcome";
+    return localStorage.getItem("learnrv-welcomed") === "1" ? "seed" : "welcome";
+  });
   const [seedName, setSeedName] = useState<string>("My Seed");
   const [activeTopic, setActiveTopic] = useState<StarterTopic | null>(null);
   const [ingestStats, setIngestStats] = useState<{ videos: number; chunks: number; concepts: number } | null>(null);
@@ -110,6 +115,11 @@ export default function Page() {
     }
   }, [step]);
 
+  const finishWelcome = () => {
+    try { localStorage.setItem("learnrv-welcomed", "1"); } catch {}
+    setStep(status?.seed?.connected ? "topic" : "seed");
+  };
+
   useEffect(() => {
     probe();
     const id = setInterval(probe, 5000);
@@ -124,7 +134,8 @@ export default function Page() {
         {bridge === "offline" && <Offline />}
         {bridge === "online" && status && (
           <>
-            <Progressbar step={step} />
+            {step === "welcome" && <WelcomeStep onContinue={finishWelcome} />}
+            {step !== "welcome" && <Progressbar step={step} />}
             {step === "seed" && (
               <SeedStep
                 status={status}
@@ -169,6 +180,119 @@ export default function Page() {
       </div>
       <Footer />
     </main>
+  );
+}
+
+// ── Welcome (educational pre-flow) ─────────────────────────────────────────
+
+function WelcomeStep({ onContinue }: { onContinue: () => void }) {
+  return (
+    <div className="py-8">
+      {/* Skip link top-right */}
+      <div className="flex justify-end mb-8">
+        <button onClick={onContinue} className="mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition flex items-center gap-2">
+          skip the intro <span aria-hidden>→</span>
+        </button>
+      </div>
+
+      {/* Section 1 — what is the thing */}
+      <section className="mb-20">
+        <div className="mono text-[11px] uppercase tracking-widest text-amber-300 mb-3 flex items-center gap-2">
+          <span className="inline-block w-4 h-px bg-amber-300" />
+          FIRST · WHAT DID YOU JUST BUY?
+        </div>
+        <h2 className="display text-[34px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-6">
+          The thing on your desk is a tiny <em className="cream italic">computer with a brain</em>.
+        </h2>
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[3/4] rounded-md overflow-hidden border border-slate-800 bg-slate-900">
+              <Image src="/img/device-hero.png" alt="The Cognitum Seed — a small matte-black computing device with a single cyan LED."
+                fill className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
+            </div>
+            <div className="mt-3 mono text-[10px] uppercase tracking-widest text-slate-500 text-center">
+              the Cognitum One Seed · about the size of a deck of cards
+            </div>
+          </div>
+          <div className="lg:col-span-7 space-y-4 text-[16px] leading-[1.7] text-slate-300">
+            <p>It&rsquo;s a small Linux computer with an <em className="text-amber-300 not-italic">AI brain</em> built in. Yours. It lives on your desk, sips power like a USB-charged toothbrush, and never asks for an account or a subscription.</p>
+            <p>It can do a few things, but the <em className="text-amber-300 not-italic">primary thing it does</em> — the one most people buy it for — is what we&rsquo;ll set up today.</p>
+            <a href="https://cognitum.one" target="_blank" rel="noreferrer" className="mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition inline-flex items-center gap-2">
+              <span className="inline-block w-3 h-px bg-current" /> hardware details at cognitum.one
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 2 — what makes it different */}
+      <section className="mb-20 border-t border-slate-800 pt-16">
+        <div className="mono text-[11px] uppercase tracking-widest text-amber-300 mb-3 flex items-center gap-2">
+          <span className="inline-block w-4 h-px bg-amber-300" />
+          SECOND · WHAT MAKES IT DIFFERENT FROM CHATGPT
+        </div>
+        <h2 className="display text-[34px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-6">
+          It can spend a weekend watching YouTube <em className="cream italic">for you</em>.
+        </h2>
+        <div className="grid lg:grid-cols-12 gap-8 items-start">
+          <div className="lg:col-span-7 space-y-5 text-[16px] leading-[1.7] text-slate-300 order-2 lg:order-1">
+            <p>ChatGPT answers from what it was trained on months ago. Your Seed does something different: <em className="text-amber-300 not-italic">it goes out and watches actual videos for you</em> — like fifteen hours of YouTube on a topic that matters to you — and remembers every word.</p>
+            <p>Concrete example: you want to actually plan your own retirement at 45 instead of paying 1% to a guy reading from a script. Point your Seed at the three best fee-only-advisor YouTube channels. It watches them all overnight. In the morning you ask &ldquo;what&rsquo;s the right monthly savings rate for my situation?&rdquo; and it answers — with cited timestamps from real experts — in under a second.</p>
+            <p>Same trick for day-trading, learning to weld, building a SaaS, planning a six-week trip through Southeast Asia. Anything where the answer lives across <em className="text-amber-300 not-italic">a lot of video by several experts</em> and you don&rsquo;t have time to watch it all.</p>
+          </div>
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <div className="relative aspect-[3/2] rounded-md overflow-hidden border border-amber-500/20">
+              <Image src="/img/knowledge-absorbed.png" alt="Streams of video frames, audio waveforms, and book pages cascading into a small Cognitum Seed device."
+                fill className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
+            </div>
+            <div className="mt-3 mono text-[10px] uppercase tracking-widest text-slate-500 text-center leading-relaxed">
+              hours of video distilled into searchable knowledge<br/>stored locally on your Seed
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 3 — the plan */}
+      <section className="mb-12 border-t border-slate-800 pt-16">
+        <div className="mono text-[11px] uppercase tracking-widest text-amber-300 mb-3 flex items-center gap-2">
+          <span className="inline-block w-4 h-px bg-amber-300" />
+          THIRD · WHAT WE&rsquo;RE GOING TO DO TOGETHER
+        </div>
+        <h2 className="display text-[34px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-3">
+          About <em className="cream italic">fifteen minutes</em>, four small steps.
+        </h2>
+        <p className="text-slate-400 text-[15px] mb-10 max-w-2xl">
+          Nothing destructive can happen. If you mess something up, just close the tab and start over.
+        </p>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mb-10">
+          <PlanStep n="1" title="Find your Seed">We scan the network and locate the little box on your desk. ~10 seconds.</PlanStep>
+          <PlanStep n="2" title="Pick a topic">You tell us what you want to become an expert at. We&rsquo;ve got starters if you&rsquo;re not sure.</PlanStep>
+          <PlanStep n="3" title="Let it watch">Your Seed pulls down the right YouTube videos, watches every minute, and stores it as vectors. ~10 minutes.</PlanStep>
+          <PlanStep n="4" title="Ask away">When it&rsquo;s done, you ask anything and it cites the exact video + timestamp.</PlanStep>
+        </div>
+        <div className="border-t border-slate-800 pt-10">
+          <button onClick={onContinue}
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 bg-amber-300 text-slate-950 font-semibold text-[17px] hover:bg-amber-200 transition rounded-[4px]">
+            Start the tour <span aria-hidden>→</span>
+          </button>
+          <p className="mt-4 mono text-[10px] uppercase tracking-widest text-slate-500">
+            stays local · uses about as much internet as a Netflix night
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function PlanStep({ n, title, children }: { n: string; title: string; children: React.ReactNode }) {
+  return (
+    <div className="border border-slate-800 bg-slate-900/40 rounded-[4px] p-5">
+      <div className="flex items-baseline gap-2 mb-2">
+        <span className="display text-[28px] text-amber-300 leading-none">{n}</span>
+        <span className="mono text-[10px] uppercase tracking-widest text-slate-500">·</span>
+        <span className="text-slate-100 font-medium text-[15px]">{title}</span>
+      </div>
+      <p className="text-slate-400 text-[13px] leading-[1.55]">{children}</p>
+    </div>
   );
 }
 
@@ -227,21 +351,22 @@ function Offline() {
         This dashboard talks to a tiny CLI you run on your own machine — that&rsquo;s how nothing leaves your network. Pick your preferred install method. Takes about three minutes. The page connects automatically once it&rsquo;s running.
       </p>
 
-      {/* Tabs */}
-      <div className="flex border-b border-slate-800 mb-5">
+      {/* Tabs — short on mobile, full on desktop */}
+      <div className="flex border-b border-slate-800 mb-5 overflow-x-auto">
         {[
-          { id: "brew" as const, label: "Homebrew · macOS" },
-          { id: "cargo" as const, label: "Cargo · cross-platform" },
-          { id: "download" as const, label: "Download binary" },
+          { id: "brew" as const, short: "Homebrew", long: "Homebrew · macOS" },
+          { id: "cargo" as const, short: "Cargo", long: "Cargo · cross-platform" },
+          { id: "download" as const, short: "Download", long: "Download binary" },
         ].map((t) => (
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest border-b-2 -mb-px transition ${
+            className={`px-3 sm:px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest border-b-2 -mb-px transition whitespace-nowrap flex-none ${
               tab === t.id ? "border-amber-300 text-amber-300" : "border-transparent text-slate-500 hover:text-slate-300"
             }`}
           >
-            {t.label}
+            <span className="sm:hidden">{t.short}</span>
+            <span className="hidden sm:inline">{t.long}</span>
           </button>
         ))}
       </div>
