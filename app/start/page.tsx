@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { LEARN_RV_VERSION } from "../version";
 
 const BRIDGE = "http://127.0.0.1:7878";
@@ -1093,7 +1095,9 @@ function ChatStep({ topics, seedName, initialTopic, initialQuestion }: {
             <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-1">YOU</div>
             <div className="text-slate-100 mb-4">{t.q}</div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-amber-300 mb-1">{seedName.toUpperCase()}</div>
-            <div className="text-slate-200 whitespace-pre-wrap leading-relaxed">{t.a}</div>
+            <div className="answer">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{t.a}</ReactMarkdown>
+            </div>
             {t.citations.length > 0 && (
               <div className="mt-4 pt-4 border-t border-slate-800">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-emerald-300 mb-2">

@@ -35,3 +35,44 @@ code, pre, .mono {
   background: rgba(56, 189, 248, 0.25);
   color: #f8fafc;
 }
+
+/* Markdown answer typography (matches localhost dashboard) */
+.answer { color: #e2e8f0; line-height: 1.7; }
+.answer > * + * { margin-top: 1.1em; }
+.answer h1, .answer h2, .answer h3, .answer h4 {
+  font-family: var(--font-display), Georgia, serif;
+  color: #f5f1e8; font-weight: 500; letter-spacing: -0.01em;
+  margin-top: 1.4em; margin-bottom: 0.3em;
+}
+.answer h1 { font-size: 1.5rem; }
+.answer h2 { font-size: 1.25rem; }
+.answer h3 { font-size: 1.125rem; }
+.answer p { font-size: 0.95rem; }
+.answer strong { color: #fcd34d; font-weight: 600; }
+.answer em { color: #f5f1e8; font-style: italic; }
+.answer ul, .answer ol { padding-left: 1.5rem; }
+.answer ul { list-style: none; }
+.answer ul > li { position: relative; padding-left: 1.1rem; }
+.answer ul > li::before {
+  content: '·'; color: #fcd34d; position: absolute; left: 0; top: 0;
+  font-weight: bold; font-size: 1.2rem; line-height: 1;
+}
+.answer ol { list-style: decimal; color: #64748b; padding-left: 1.75rem; }
+.answer ol > li { padding-left: 0.3rem; color: #e2e8f0; }
+.answer ol > li::marker { color: #fcd34d; font-family: var(--font-mono); font-size: 0.85em; }
+.answer li + li { margin-top: 0.4em; }
+.answer code {
+  font-family: var(--font-mono); font-size: 0.85em;
+  background: #0b1220; border: 1px solid #1e293b; padding: 0.1em 0.4em;
+  border-radius: 3px; color: #fcd34d;
+}
+.answer pre {
+  background: #020617; border: 1px solid #1e293b; border-radius: 4px;
+  padding: 0.9rem 1rem; overflow-x: auto;
+}
+.answer pre code { background: none; border: none; padding: 0; color: #e2e8f0; }
+.answer a { color: #fcd34d; text-decoration: underline; text-decoration-color: rgba(252,211,77,0.4); text-underline-offset: 2px; }
+.answer blockquote {
+  border-left: 2px solid #fcd34d; padding-left: 1rem; color: #94a3b8; font-style: italic;
+}
+.answer hr { border: none; border-top: 1px solid #1e293b; margin: 1.5rem 0; }
