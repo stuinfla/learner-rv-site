@@ -43,7 +43,7 @@ const STARTERS: StarterTopic[] = [
     slug: "retirement-planning-at-45",
     title: "Retirement planning at 45 · own the math, not the salesperson",
     blurb: "Synthesize 3 fee-only-advisor channels — Rob Berger, The Money Guys, Ramsey — on what the math actually says, not what someone selling AUM tells you.",
-    source: "https://www.youtube.com/@RobBerger,https://www.youtube.com/@TheMoneyGuyShow,https://www.youtube.com/@ramseyshow",
+    source: "https://www.youtube.com/@RobBerger,https://www.youtube.com/@MoneyGuyShow,https://www.youtube.com/@ramseyshow",
     emoji: "🏦",
     firstQuestion: "If I have $400k in a 401k at 45 and want to retire at 60, what do the three channels agree (and disagree) on for monthly savings rate?",
   },
