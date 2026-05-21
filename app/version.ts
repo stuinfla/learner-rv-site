@@ -1,1 +1,1 @@
-export const LEARN_RV_VERSION = "v0.2.38";
+export const LEARN_RV_VERSION = "v0.2.39";
