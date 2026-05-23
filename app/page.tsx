@@ -90,8 +90,8 @@ function Hero() {
             <figure className="relative">
               <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] rounded-[8px] overflow-hidden border border-amber-500/25 shadow-2xl shadow-amber-900/40 ring-1 ring-inset ring-amber-300/10">
                 <Image
-                  src="/img/seed-zero.png"
-                  alt="The Cognitum Seed 0 — a flat matte-black appliance with a live LED matrix on the front face, photographed beside its branded packaging."
+                  src="/img/seed-box.png"
+                  alt="The Cognitum Seed 0 — a flat matte-black appliance with the COGNITUM wordmark on top, sitting on a MacBook keyboard for scale."
                   fill
                   priority
                   className="object-cover"
@@ -108,7 +108,7 @@ function Hero() {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent">
                   <div className="mono text-[10px] uppercase tracking-widest text-amber-200 flex items-center gap-2">
                     <span className="inline-block w-3 h-px bg-amber-300/70" />
-                    Cognitum Seed 0 · live LED matrix shows ingest + query activity
+                    Cognitum Seed 0 · sized to live next to your machine
                   </div>
                 </div>
               </div>
@@ -348,8 +348,8 @@ function SeedHardware() {
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] rounded-[6px] overflow-hidden border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
               <Image
-                src="/img/seed-zero.png"
-                alt="The Cognitum Seed 0 — flat matte-black enclosure with a live LED matrix display on the front face, beside its branded packaging."
+                src="/img/seed-on-mac.png"
+                alt="The Cognitum Seed 0 photographed front-facing — flat matte-black enclosure with the live LED matrix display visible across the front face, sitting atop a Mac mini."
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 100vw"
