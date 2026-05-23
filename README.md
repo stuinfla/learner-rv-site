@@ -17,7 +17,7 @@ pairing, ingest, push, ask) so the browser never has to reach the Seed directly.
 
 ## User flow
 
-1. `cargo install learn-rs`
+1. `cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli`
 2. `learn ui` — starts the bridge + opens the local copy of this same GUI
 3. Or open `https://cognitum-learn-site.vercel.app` from any device on the same machine and
    the page will detect the bridge and walk you through Seed pairing → topic ingest →
@@ -31,4 +31,4 @@ npm run dev    # local at http://localhost:3000
 npm run build  # production build (auto-run by Vercel on push)
 ```
 
-Bump `COGNITUM_LEARN_VERSION` in `app/page.tsx` after each `learn-rs` release.
+Bump `COGNITUM_LEARN_VERSION` in `app/version.ts` after each `cognitum-learn` release.

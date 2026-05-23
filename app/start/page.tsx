@@ -407,7 +407,7 @@ function BridgePill({ bridge }: { bridge: BridgeState }) {
   const cfg = bridge === "online"
     ? { dot: "bg-emerald-400 animate-pulse", label: `bridge running · ${COGNITUM_LEARN_VERSION}`, tone: "text-emerald-300" }
     : bridge === "offline"
-      ? { dot: "bg-amber-400", label: "waiting for bridge", tone: "text-amber-300" }
+      ? { dot: "bg-amber-400", label: "preview mode · run `learn ui` to go live", tone: "text-amber-300" }
       : { dot: "bg-slate-500 animate-pulse", label: "checking…", tone: "text-slate-400" };
   return (
     <div className={`flex items-center gap-2 font-mono text-[11px] uppercase tracking-widest ${cfg.tone}`}>

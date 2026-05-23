@@ -9,8 +9,11 @@ export default function Home() {
     <main className="min-h-screen text-slate-200">
       <SiteHeader />
       <Hero />
-      <BrainVectors />
+      <LiveWalkthrough />
+      <CitedAnswerMock />
       <WhileYouSleep />
+      <UnderTheHood />
+      <BrainVectors />
       <Story />
       <SovereigntyPanel />
       <SeedHardware />
@@ -38,7 +41,7 @@ function SiteHeader() {
           <a href="#sleep" className="text-slate-500 hover:text-amber-300 transition hidden md:inline">While you sleep</a>
           <a href="#install" className="text-slate-500 hover:text-amber-300 transition hidden md:inline">Install</a>
           <Link href="/start" className="text-slate-100 hover:text-amber-300 transition whitespace-nowrap">
-            <span className="hidden sm:inline">Open dashboard </span><span className="sm:hidden">Start </span><span className="text-amber-300">→</span>
+            <span className="hidden sm:inline">See it in action </span><span className="sm:hidden">Demo </span><span className="text-amber-300">→</span>
           </Link>
         </nav>
       </div>
@@ -106,19 +109,19 @@ function Hero() {
 
           {/* COPY second on mobile (order-2), first on desktop (lg:order-1) — slightly narrower */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <Eyebrow>FOR PEOPLE WHO JUST UNBOXED A COGNITUM ONE SEED</Eyebrow>
+            <Eyebrow>VIDEOS → CITED ANSWERS · ON YOUR HARDWARE</Eyebrow>
             <h1 className="display mt-5 text-[32px] sm:text-[40px] lg:text-[52px] leading-[1.05] tracking-[-0.02em] text-slate-50 font-normal">
-              Your <span className="cream">Cognitum Seed</span> turns hours of video into the <em className="cream italic" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>expert</em> you wish you were.
+              Turn any topic into an in-house <em className="cream italic" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>expert</em> you can ask anything.
             </h1>
             <p className="mt-7 text-[17px] leading-[1.65] text-slate-300 max-w-[52ch]">
-              Hand your Seed the four best YouTube channels on day-trading-with-AI, or retirement planning at 45, or 6-week solo travel through Southeast Asia. It watches all <em className="text-amber-300 not-italic">fifteen-plus hours</em>, distills what every expert agrees and disagrees on, and stores it the way your brain does — as vectors. You wake up. You ask. It answers, cited.
+              Point it at a YouTube channel, a podcast feed, a stack of PDFs. It watches every minute, transcribes every word, and turns it into a searchable knowledge base — answering your questions with <em className="text-amber-300 not-italic">citations back to the exact second in the exact source</em>. No cloud. No subscription. Your knowledge, on your hardware.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#brain" className="inline-flex items-center gap-2 px-6 py-3.5 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
-                Show me how it works <span aria-hidden>↓</span>
+              <a href="#walkthrough" className="inline-flex items-center gap-2 px-6 py-3.5 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
+                See what runs <span aria-hidden>↓</span>
               </a>
               <Link href="/start" className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-700 text-slate-100 font-medium hover:border-amber-300 hover:text-amber-300 transition rounded-[4px]">
-                I have my Seed — let&rsquo;s start it up <span aria-hidden>→</span>
+                Try the demo <span aria-hidden>→</span>
               </Link>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 mono text-[11px] uppercase tracking-widest text-slate-500">
@@ -127,7 +130,7 @@ function Hero() {
                 <span>shipping <span className="text-emerald-300">{COGNITUM_LEARN_VERSION}</span></span>
               </span>
               <span className="text-slate-700">·</span>
-              <span>nothing leaves your network</span>
+              <span>pairs with the <a href="#hardware" className="text-amber-300/80 hover:text-amber-300 underline decoration-amber-500/30 underline-offset-2">Cognitum Seed</a></span>
             </div>
           </div>
         </div>
@@ -259,29 +262,31 @@ function WhileYouSleep() {
 function SovereigntyPanel() {
   const rows = [
     { axis: "Watches hours of video for you",   notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Cited answers with timestamps",     notebooklm: true,  chatgpt: false, perplexity: true,  cognitumLearn: true },
+    { axis: "Live web search / fresh data",      notebooklm: false, chatgpt: true,  perplexity: true,  cognitumLearn: false },
+    { axis: "Multimodal output (images, code)",  notebooklm: false, chatgpt: true,  perplexity: false, cognitumLearn: false },
     { axis: "Runs offline",                      notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
     { axis: "No account required",               notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
     { axis: "Zero monthly fee",                  notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
     { axis: "Your KB outlives the vendor",       notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
     { axis: "Hardware you can hold",             notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
-    { axis: "Cited answers with timestamps",     notebooklm: true,  chatgpt: false, perplexity: true,  cognitumLearn: true },
   ];
   return (
     <section className="py-28 border-b border-slate-800 bg-slate-950">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
         <div className="max-w-3xl">
-          <Eyebrow>WHY THIS, NOT THAT</Eyebrow>
+          <Eyebrow>WHERE EACH ONE WINS</Eyebrow>
           <h2 className="display mt-5 text-[36px] sm:text-[48px] leading-[1.05] text-slate-50 font-normal">
-            On the things that actually matter,<br/>
-            <em className="cream italic">this is the only product on the chart.</em>
+            ChatGPT wins some rows. Perplexity wins others.<br/>
+            <em className="cream italic">The rows that matter most? Only one column ticks.</em>
           </h2>
           <p className="mt-6 text-slate-400 text-[17px] leading-[1.7] max-w-2xl">
-            Everyone competes on model size and response speed. Nobody competes on whether you can unplug the cord and still keep your knowledge. We do.
+            We didn&rsquo;t cherry-pick. Live web search and multimodal output go to the cloud incumbents and we&rsquo;re glad those exist. On sovereignty, durability, and zero ongoing cost — that&rsquo;s where the asymmetry shows up.
           </p>
         </div>
 
-        <div className="mt-14 border border-slate-800 rounded-[4px] overflow-hidden">
-          <table className="w-full text-sm">
+        <div className="mt-14 border border-slate-800 rounded-[4px] overflow-x-auto">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="bg-slate-900/60 border-b border-slate-800">
                 <th className="text-left px-6 py-4 mono text-[11px] uppercase tracking-widest text-slate-500 font-normal">Capability</th>
@@ -326,7 +331,7 @@ function Mark({ on, highlight = false }: { on: boolean; highlight?: boolean }) {
 
 function SeedHardware() {
   return (
-    <section id="what" className="py-28 border-b border-slate-800">
+    <section id="hardware" className="py-28 border-b border-slate-800">
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
           {/* LEFT: clean device photo */}
@@ -397,8 +402,12 @@ function Install() {
               Install once.<br/>
               <em className="cream italic">Run for years.</em>
             </h2>
-            <p className="mt-6 text-slate-400 text-[17px] leading-[1.7]">
-              <span className="mono text-amber-200">cognitum-learn</span> is a pure-Rust workspace. You need <a className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2" href="https://rustup.rs" target="_blank" rel="noreferrer">the Rust toolchain</a> on your machine. Pre-built binaries for non-Rust folks are landing soon.
+            <div className="mt-6 inline-flex items-center gap-2 mono text-[11px] uppercase tracking-widest text-amber-300/90 border border-amber-500/30 bg-amber-500/5 px-3 py-1.5 rounded-[3px]">
+              <span className="w-1.5 h-1.5 bg-amber-400" />
+              today: developers only · brew + npx land in v0.5
+            </div>
+            <p className="mt-5 text-slate-400 text-[17px] leading-[1.7]">
+              <span className="mono text-amber-200">cognitum-learn</span> is a pure-Rust workspace. Right now installing means <a className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2" href="https://rustup.rs" target="_blank" rel="noreferrer">the Rust toolchain</a> + a ~3-minute compile. Pre-built binaries for everyone else are in flight.
             </p>
             <p className="mt-6 mono text-[11px] uppercase tracking-widest text-slate-600 leading-relaxed">
               compiles in ~3-5 min · installs to ~/.cargo/bin/ · no system packages touched
@@ -486,8 +495,8 @@ function FAQ() {
             <p className="mt-5 text-slate-400 text-[15px] leading-[1.65]">No fluff. Click any.</p>
           </div>
           <div className="lg:col-span-8 space-y-3">
-            {items.map((it) => (
-              <details key={it.q} className="group border border-slate-800 hover:border-slate-700 bg-slate-900/20 rounded-[4px]">
+            {items.map((it, idx) => (
+              <details key={it.q} open={idx < 2} className="group border border-slate-800 hover:border-slate-700 bg-slate-900/20 rounded-[4px]">
                 <summary className="cursor-pointer p-5 flex items-start justify-between gap-4 text-slate-100 font-medium text-[15px] list-none">
                   <span>{it.q}</span>
                   <span className="mono text-amber-300 transition-transform group-open:rotate-45 text-xl leading-none flex-none">+</span>
@@ -558,6 +567,227 @@ function SiteFooter() {
         </div>
       </div>
     </footer>
+  );
+}
+
+// ── Live walkthrough (the four canonical commands) ────────────────────────
+
+function LiveWalkthrough() {
+  const cards = [
+    {
+      cmd: "learn doctor",
+      title: "Verify the setup",
+      blurb: "Checks the Rust toolchain, ffmpeg, yt-dlp, your Anthropic key, and whether a Seed is reachable on the network.",
+      mock: [
+        "✓ Rust 1.87.0",
+        "✓ ffmpeg 7.1",
+        "✓ yt-dlp 2026.05",
+        "✓ ANTHROPIC_API_KEY",
+        "✓ Seed @ 192.168.1.42 (1.2 ms)",
+      ],
+    },
+    {
+      cmd: "learn study \"longevity\"",
+      title: "Find + watch the experts",
+      blurb: "Discovers top channels for your topic, downloads, transcribes, chunks, embeds — locally — and writes one .rvf file.",
+      mock: [
+        "→ discovered 4 channels · 38 videos",
+        "→ downloading · 91h 14m of audio",
+        "→ transcribing (Whisper.cpp on-device)",
+        "→ embedding 14,800 chunks · BGE-small",
+        "✓ longevity.rvf  (47 MB)  6m 12s",
+      ],
+    },
+    {
+      cmd: "learn ask longevity \"<question>\"",
+      title: "Ask, with citations",
+      blurb: "HyDE expansion → hybrid retrieve (dense + BM25) → cross-encoder rerank → MMR diversity → cited synthesis.",
+      mock: [
+        "Q: \"how does morning light affect sleep?\"",
+        "  retrieving · 6 chunks · 12 ms",
+        "  synthesizing · 850 ms",
+        "  citations: [1] [2] [3]  ←  timestamps",
+        "✓ answer ready  (click to expand below)",
+      ],
+    },
+    {
+      cmd: "learn push longevity",
+      title: "Push it to your Seed",
+      blurb: "Transfers the .rvf to the Cognitum Seed device. From then on, the Seed answers your questions, on-device, even offline.",
+      mock: [
+        "→ packaging longevity.rvf (47 MB)",
+        "→ pushing to Cognitum @ 192.168.1.42",
+        "✓ Seed now serving longevity",
+        "  query it via MCP, REST, or the dashboard",
+      ],
+    },
+  ];
+
+  return (
+    <section id="walkthrough" className="border-b border-slate-800">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-12 items-end mb-12">
+          <div className="lg:col-span-7">
+            <Eyebrow warm>HERE&rsquo;S WHAT ACTUALLY RUNS</Eyebrow>
+            <h2 className="display mt-5 text-[34px] sm:text-[44px] leading-[1.05] text-slate-50 font-normal">
+              Four commands.<br/>
+              <em className="cream italic">A working knowledge base in 6 minutes.</em>
+            </h2>
+          </div>
+          <div className="lg:col-span-5 text-[15px] leading-[1.7] text-slate-400">
+            <p>
+              No GUI to learn, no account to create. Each card below is one of the four commands the binary prints when you run it. Top to bottom is the full path from empty disk to a Seed answering questions.
+            </p>
+          </div>
+        </div>
+
+        {/* Pipeline SVG strip — the 4-step header (light-themed asset on a dark card to soften) */}
+        <div className="mb-10 rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-4">
+          <img
+            src="/svg/quickstart.svg"
+            alt="Four-step pipeline: download, study, ask, push."
+            className="w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+
+        <ol className="grid lg:grid-cols-2 gap-4 lg:gap-6">
+          {cards.map((c, i) => (
+            <li key={c.cmd} className="border border-slate-800 hover:border-slate-700 bg-slate-900/30 rounded-[6px] p-5 lg:p-6">
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="mono text-[10px] text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded-[2px]">{`STEP ${i + 1}`}</span>
+                <h3 className="text-[15px] sm:text-[16px] font-semibold text-slate-100">{c.title}</h3>
+              </div>
+              <div className="mono text-[13px] text-amber-200 bg-slate-950 border border-slate-800 px-4 py-3 rounded-[4px] overflow-x-auto whitespace-pre">
+                <span className="text-slate-600 select-none">$ </span>{c.cmd}
+              </div>
+              <p className="mt-3 text-slate-400 text-[13.5px] leading-[1.65]">{c.blurb}</p>
+              <pre className="mt-3 mono text-[12px] leading-[1.7] text-slate-400 bg-slate-950/60 border border-slate-900 px-3 py-2.5 rounded-[3px] overflow-x-auto">
+{c.mock.join("\n")}
+              </pre>
+            </li>
+          ))}
+        </ol>
+
+        <p className="mt-8 mono text-[11px] uppercase tracking-widest text-slate-600">
+          terminal output above is illustrative · real numbers vary by topic
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ── Cited answer mock (the artifact lifted from /start) ────────────────────
+
+function CitedAnswerMock() {
+  return (
+    <section className="border-b border-slate-800 bg-slate-950">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-28">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-4">
+            <Eyebrow>WHAT AN ANSWER LOOKS LIKE</Eyebrow>
+            <h2 className="display mt-5 text-[34px] sm:text-[40px] leading-[1.1] text-slate-50 font-normal">
+              Cited.<br/>
+              Timestamped.<br/>
+              <em className="cream italic">Verifiable.</em>
+            </h2>
+            <p className="mt-6 text-slate-400 text-[15px] leading-[1.7]">
+              Every claim links to the exact second of the exact source. Click a citation, it opens the video at that timestamp. No hallucinated facts hiding behind authoritative tone.
+            </p>
+          </div>
+
+          <div className="lg:col-span-8">
+            <div className="border border-amber-500/20 bg-slate-900/40 rounded-[6px] overflow-hidden shadow-2xl shadow-amber-900/10">
+              {/* Header bar — looks like a terminal/app chrome */}
+              <div className="flex items-center justify-between px-4 py-2.5 bg-slate-950 border-b border-slate-800">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-slate-700" />
+                  <span className="w-2 h-2 rounded-full bg-slate-700" />
+                  <span className="w-2 h-2 rounded-full bg-slate-700" />
+                </div>
+                <div className="mono text-[10px] uppercase tracking-widest text-slate-500">
+                  longevity.rvf · 91 h · 14,800 chunks
+                </div>
+              </div>
+
+              {/* Question */}
+              <div className="px-5 py-4 border-b border-slate-800 bg-slate-900/30">
+                <div className="mono text-[10px] uppercase tracking-widest text-amber-300/70 mb-2">YOU ASKED</div>
+                <div className="text-[16px] text-slate-100 leading-[1.5]">
+                  &ldquo;what does Huberman actually say about morning light?&rdquo;
+                </div>
+              </div>
+
+              {/* Answer */}
+              <div className="px-5 py-5 border-b border-slate-800">
+                <div className="mono text-[10px] uppercase tracking-widest text-emerald-300/70 mb-2">SEED ANSWERED · 850 ms</div>
+                <div className="text-[15.5px] text-slate-200 leading-[1.7]">
+                  Get 5–10 minutes of unfiltered outdoor light within the first hour of waking <span className="text-amber-300/80 mono text-[12px]">[1]</span>. This anchors your circadian clock, suppresses morning melatonin, and is the single highest-leverage input for both daytime energy and nighttime sleep quality <span className="text-amber-300/80 mono text-[12px]">[2]</span>. On overcast days, roughly double the duration to compensate for the reduction in UV and blue-spectrum intensity <span className="text-amber-300/80 mono text-[12px]">[3]</span>.
+                </div>
+              </div>
+
+              {/* Citations */}
+              <div className="px-5 py-4">
+                <div className="mono text-[10px] uppercase tracking-widest text-slate-500 mb-3">CITATIONS · click any to open at timestamp</div>
+                <ol className="space-y-2 text-[13.5px]">
+                  {[
+                    { n: 1, ep: "Master Your Sleep · Andrew Huberman", t: "12:48" },
+                    { n: 2, ep: "Huberman Lab Ep. 68 · with Matthew Walker", t: "23:14" },
+                    { n: 3, ep: "Optimize Morning Routines · Huberman Lab", t: "04:32" },
+                  ].map((c) => (
+                    <li key={c.n} className="flex items-baseline gap-3 group">
+                      <span className="mono text-[12px] text-amber-300/80 flex-none">[{c.n}]</span>
+                      <span className="text-slate-300 group-hover:text-amber-300 transition cursor-pointer">{c.ep}</span>
+                      <span className="ml-auto mono text-[11px] text-slate-500 flex-none">{c.t}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+            <p className="mt-4 mono text-[11px] uppercase tracking-widest text-slate-600 text-right">
+              this is a static preview · the real dashboard renders identical structure
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ── Under the hood (the technical depth, soft-served) ─────────────────────
+
+function UnderTheHood() {
+  return (
+    <section className="border-b border-slate-800">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-24">
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5">
+            <Eyebrow warm>UNDER THE HOOD</Eyebrow>
+            <h2 className="display mt-5 text-[32px] sm:text-[40px] leading-[1.1] text-slate-50 font-normal">
+              Eight stages.<br/>
+              <em className="cream italic">All local. Zero cloud round-trips during ingest.</em>
+            </h2>
+            <p className="mt-6 text-slate-400 text-[15.5px] leading-[1.7]">
+              Source acquisition through Ed25519-witnessed storage. Whisper.cpp for ASR, BGE-small-en-v1.5 (384-dim ONNX) for embeddings, HNSW for sub-millisecond recall. The Anthropic API only enters when you call <span className="mono text-amber-200">learn ask</span> — and even that can be swapped for local inference with <span className="mono text-amber-200">LEARN_SYNTH_LOCAL=1</span>.
+            </p>
+            <p className="mt-5 mono text-[11px] uppercase tracking-widest text-slate-600 leading-relaxed">
+              17 crates · pure rust · ~50 ms embed per chunk on M-series
+            </p>
+          </div>
+
+          <div className="lg:col-span-7">
+            <div className="rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-3 lg:p-4">
+              <img
+                src="/svg/ingest-pipeline.svg"
+                alt="Cognitum Learn ingest pipeline: source → acquire → keyframes → transcribe → chunk → embed → index → witness."
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
