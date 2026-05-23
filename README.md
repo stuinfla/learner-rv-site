@@ -1,6 +1,6 @@
-# learner-rv-site
+# cognitum-learn-site
 
-The hosted GUI for [`learn-rv`](https://github.com/stuinfla/learner-rv) — the pure-Rust
+The hosted GUI for [`cognitum-learn`](https://github.com/stuinfla/cognitum-learn) — the pure-Rust
 video knowledge-base CLI that pairs with a [Cognitum One Seed](https://cognitum.one).
 
 ## How it works
@@ -19,7 +19,7 @@ pairing, ingest, push, ask) so the browser never has to reach the Seed directly.
 
 1. `cargo install learn-rs`
 2. `learn ui` — starts the bridge + opens the local copy of this same GUI
-3. Or open `https://learner-rv-site.vercel.app` from any device on the same machine and
+3. Or open `https://cognitum-learn-site.vercel.app` from any device on the same machine and
    the page will detect the bridge and walk you through Seed pairing → topic ingest →
    chat.
 
@@ -31,4 +31,4 @@ npm run dev    # local at http://localhost:3000
 npm run build  # production build (auto-run by Vercel on push)
 ```
 
-Bump `LEARN_RV_VERSION` in `app/page.tsx` after each `learn-rs` release.
+Bump `COGNITUM_LEARN_VERSION` in `app/page.tsx` after each `learn-rs` release.

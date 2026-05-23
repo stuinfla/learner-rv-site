@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import { LEARN_RV_VERSION } from "./version";
+import { COGNITUM_LEARN_VERSION } from "./version";
 
-const INSTALL_CMD = "cargo install --git https://github.com/stuinfla/learner-rv learn-cli";
+const INSTALL_CMD = "cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli";
 
 export default function Home() {
   return (
@@ -30,8 +30,8 @@ function SiteHeader() {
       <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 h-16 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <BrandMark className="w-7 h-7 flex-none" />
-          <span className="font-medium tracking-tight text-slate-100 whitespace-nowrap">learn-rv</span>
-          <span className="mono text-[10px] text-slate-500 uppercase tracking-widest whitespace-nowrap" data-version>{LEARN_RV_VERSION}</span>
+          <span className="font-medium tracking-tight text-slate-100 whitespace-nowrap">cognitum-learn</span>
+          <span className="mono text-[10px] text-slate-500 uppercase tracking-widest whitespace-nowrap" data-version>{COGNITUM_LEARN_VERSION}</span>
         </div>
         <nav className="flex items-center gap-4 sm:gap-7 mono text-[11px] sm:text-[12px] uppercase tracking-widest">
           <a href="#brain" className="text-slate-500 hover:text-amber-300 transition hidden md:inline">How it remembers</a>
@@ -124,7 +124,7 @@ function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 mono text-[11px] uppercase tracking-widest text-slate-500">
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-emerald-400 animate-pulse" />
-                <span>shipping <span className="text-emerald-300">{LEARN_RV_VERSION}</span></span>
+                <span>shipping <span className="text-emerald-300">{COGNITUM_LEARN_VERSION}</span></span>
               </span>
               <span className="text-slate-700">·</span>
               <span>nothing leaves your network</span>
@@ -258,13 +258,13 @@ function WhileYouSleep() {
 
 function SovereigntyPanel() {
   const rows = [
-    { axis: "Watches hours of video for you",   notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "Runs offline",                      notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "No account required",               notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "Zero monthly fee",                  notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "Your KB outlives the vendor",       notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "Hardware you can hold",             notebooklm: false, chatgpt: false, perplexity: false, learnRv: true },
-    { axis: "Cited answers with timestamps",     notebooklm: true,  chatgpt: false, perplexity: true,  learnRv: true },
+    { axis: "Watches hours of video for you",   notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Runs offline",                      notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "No account required",               notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Zero monthly fee",                  notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Your KB outlives the vendor",       notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Hardware you can hold",             notebooklm: false, chatgpt: false, perplexity: false, cognitumLearn: true },
+    { axis: "Cited answers with timestamps",     notebooklm: true,  chatgpt: false, perplexity: true,  cognitumLearn: true },
   ];
   return (
     <section className="py-28 border-b border-slate-800 bg-slate-950">
@@ -288,7 +288,7 @@ function SovereigntyPanel() {
                 <th className="px-4 py-4 mono text-[11px] uppercase tracking-widest text-slate-500 font-normal">NotebookLM</th>
                 <th className="px-4 py-4 mono text-[11px] uppercase tracking-widest text-slate-500 font-normal">ChatGPT</th>
                 <th className="px-4 py-4 mono text-[11px] uppercase tracking-widest text-slate-500 font-normal">Perplexity</th>
-                <th className="px-4 py-4 mono text-[11px] uppercase tracking-widest text-amber-300 font-medium">learn-rv</th>
+                <th className="px-4 py-4 mono text-[11px] uppercase tracking-widest text-amber-300 font-medium">cognitum-learn</th>
               </tr>
             </thead>
             <tbody>
@@ -298,7 +298,7 @@ function SovereigntyPanel() {
                   <td className="px-4 py-4 text-center"><Mark on={r.notebooklm} /></td>
                   <td className="px-4 py-4 text-center"><Mark on={r.chatgpt} /></td>
                   <td className="px-4 py-4 text-center"><Mark on={r.perplexity} /></td>
-                  <td className="px-4 py-4 text-center bg-amber-500/5"><Mark on={r.learnRv} highlight /></td>
+                  <td className="px-4 py-4 text-center bg-amber-500/5"><Mark on={r.cognitumLearn} highlight /></td>
                 </tr>
               ))}
             </tbody>
@@ -398,7 +398,7 @@ function Install() {
               <em className="cream italic">Run for years.</em>
             </h2>
             <p className="mt-6 text-slate-400 text-[17px] leading-[1.7]">
-              <span className="mono text-amber-200">learn-rv</span> is a pure-Rust workspace. You need <a className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2" href="https://rustup.rs" target="_blank" rel="noreferrer">the Rust toolchain</a> on your machine. Pre-built binaries for non-Rust folks are landing soon.
+              <span className="mono text-amber-200">cognitum-learn</span> is a pure-Rust workspace. You need <a className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2" href="https://rustup.rs" target="_blank" rel="noreferrer">the Rust toolchain</a> on your machine. Pre-built binaries for non-Rust folks are landing soon.
             </p>
             <p className="mt-6 mono text-[11px] uppercase tracking-widest text-slate-600 leading-relaxed">
               compiles in ~3-5 min · installs to ~/.cargo/bin/ · no system packages touched
@@ -409,7 +409,7 @@ function Install() {
             <InstallCard step="1" title="Install Rust (skip if you have it)">
               <CodeLine>curl --proto &apos;=https&apos; --tlsv1.2 -sSf https://sh.rustup.rs | sh</CodeLine>
             </InstallCard>
-            <InstallCard step="2" title="Install learn-rv from source">
+            <InstallCard step="2" title="Install cognitum-learn from source">
               <CodeLine>{INSTALL_CMD}</CodeLine>
             </InstallCard>
             <InstallCard step="3" title="Start the local bridge">
@@ -548,11 +548,11 @@ function SiteFooter() {
         <div className="flex items-center gap-3">
           <BrandMark className="w-5 h-5" />
           <span className="mono text-[11px] uppercase tracking-widest text-slate-500">
-            learn-rv <span data-version-footer>{LEARN_RV_VERSION}</span> · open source
+            cognitum-learn <span data-version-footer>{COGNITUM_LEARN_VERSION}</span> · open source
           </span>
         </div>
         <div className="flex items-center gap-6 mono text-[11px] uppercase tracking-widest text-slate-500">
-          <a href="https://github.com/stuinfla/learner-rv" className="hover:text-amber-300 transition">GitHub</a>
+          <a href="https://github.com/stuinfla/cognitum-learn" className="hover:text-amber-300 transition">GitHub</a>
           <a href="https://cognitum.one" className="hover:text-amber-300 transition">cognitum.one</a>
           <span className="text-slate-700">Built in public</span>
         </div>

@@ -22,7 +22,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "learn-rv — your Cognitum Seed becomes an expert, for you, while you sleep",
+  title: "Cognitum Learn — your Cognitum Seed becomes an expert, for you, while you sleep",
   description:
     "Point your Cognitum Seed at a YouTube channel before bed. It watches every video, distills every insight, and stores it the way your brain stores knowledge — as vectors. You wake up an expert.",
 };

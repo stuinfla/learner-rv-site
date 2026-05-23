@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { LEARN_RV_VERSION } from "../version";
+import { COGNITUM_LEARN_VERSION } from "../version";
 
 const BRIDGE = "http://127.0.0.1:7878";
 
@@ -96,7 +96,7 @@ export default function Page() {
   // Default to welcome unless localStorage says we've onboarded
   const [step, setStep] = useState<Step>(() => {
     if (typeof window === "undefined") return "welcome";
-    return localStorage.getItem("learnrv-welcomed") === "1" ? "seed" : "welcome";
+    return localStorage.getItem("cognitumlearn-welcomed") === "1" ? "seed" : "welcome";
   });
   const [seedName, setSeedName] = useState<string>("My Seed");
   const [activeTopic, setActiveTopic] = useState<StarterTopic | null>(null);
@@ -120,7 +120,7 @@ export default function Page() {
   }, [step]);
 
   const finishWelcome = () => {
-    try { localStorage.setItem("learnrv-welcomed", "1"); } catch {}
+    try { localStorage.setItem("cognitumlearn-welcomed", "1"); } catch {}
     setStep(status?.seed?.connected ? "topic" : "seed");
   };
 
@@ -394,8 +394,8 @@ function Header({ bridge }: { bridge: BridgeState }) {
     <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-10">
       <div className="max-w-4xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-          <span className="font-mono text-sm tracking-wider text-slate-100 group-hover:text-amber-300 transition">learn-rv</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-slate-500" data-version>{LEARN_RV_VERSION}</span>
+          <span className="font-mono text-sm tracking-wider text-slate-100 group-hover:text-amber-300 transition">cognitum-learn</span>
+          <span className="font-mono text-[10px] uppercase tracking-widest text-slate-500" data-version>{COGNITUM_LEARN_VERSION}</span>
         </Link>
         <BridgePill bridge={bridge} />
       </div>
@@ -405,7 +405,7 @@ function Header({ bridge }: { bridge: BridgeState }) {
 
 function BridgePill({ bridge }: { bridge: BridgeState }) {
   const cfg = bridge === "online"
-    ? { dot: "bg-emerald-400 animate-pulse", label: `bridge running · ${LEARN_RV_VERSION}`, tone: "text-emerald-300" }
+    ? { dot: "bg-emerald-400 animate-pulse", label: `bridge running · ${COGNITUM_LEARN_VERSION}`, tone: "text-emerald-300" }
     : bridge === "offline"
       ? { dot: "bg-amber-400", label: "waiting for bridge", tone: "text-amber-300" }
       : { dot: "bg-slate-500 animate-pulse", label: "checking…", tone: "text-slate-400" };
@@ -464,7 +464,7 @@ function Offline() {
 
       {tab === "brew" && (
         <div className="space-y-3">
-          <CodeBlock>brew install stuinfla/tap/learn-rv  # coming soon — use Cargo for now</CodeBlock>
+          <CodeBlock>brew install stuinfla/tap/cognitum-learn  # coming soon — use Cargo for now</CodeBlock>
           <p className="text-slate-500 text-xs">Homebrew formula is in the pipeline. Use the Cargo tab today.</p>
         </div>
       )}
@@ -475,8 +475,8 @@ function Offline() {
             <CodeBlock>curl --proto &apos;=https&apos; --tlsv1.2 -sSf https://sh.rustup.rs | sh</CodeBlock>
           </div>
           <div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-1.5 mt-3">Then — install learn-rv</div>
-            <CodeBlock>cargo install --git https://github.com/stuinfla/learner-rv learn-cli</CodeBlock>
+            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-1.5 mt-3">Then — install cognitum-learn</div>
+            <CodeBlock>cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli</CodeBlock>
           </div>
           <div>
             <div className="font-mono text-[10px] uppercase tracking-widest text-slate-500 mb-1.5 mt-3">Finally — start the bridge</div>
@@ -488,7 +488,7 @@ function Offline() {
       {tab === "download" && (
         <div className="space-y-3">
           <p className="text-slate-400 text-[14px]">Grab a pre-built binary for your platform.</p>
-          <a href="https://github.com/stuinfla/learner-rv/releases/latest" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
+          <a href="https://github.com/stuinfla/cognitum-learn/releases/latest" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
             Open GitHub Releases <span aria-hidden>↗</span>
           </a>
           <p className="text-slate-500 text-xs">Download the right tarball, extract <code className="font-mono text-amber-200">learn</code>, and put it on your PATH. Then run <code className="font-mono text-amber-200">learn ui</code>.</p>
@@ -1230,7 +1230,7 @@ function Footer() {
   return (
     <footer className="mt-12 py-8 border-t border-slate-800">
       <div className="max-w-4xl mx-auto px-5 sm:px-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
-        <span>learn-rv <span data-version-footer>{LEARN_RV_VERSION}</span> · your hardware, your data</span>
+        <span>cognitum-learn <span data-version-footer>{COGNITUM_LEARN_VERSION}</span> · your hardware, your data</span>
         <Link href="/" className="hover:text-amber-300 transition">← back to homepage</Link>
       </div>
     </footer>
