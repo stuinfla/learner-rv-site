@@ -387,7 +387,7 @@ function SeedHardware() {
           </div>
         </div>
 
-        {/* — Coming next: next Appliance — */}
+        {/* — Coming next: v1 Appliance — */}
         <SeedTwoPreview />
 
       </div>
@@ -403,14 +403,14 @@ function SeedTwoPreview() {
         <div className="lg:col-span-5">
           <div className="inline-flex items-center gap-2 mono text-[11px] uppercase tracking-widest text-amber-300/90 border border-amber-500/30 bg-amber-500/5 px-3 py-1.5 rounded-[3px]">
             <span className="w-1.5 h-1.5 bg-amber-400" />
-            coming next · next Appliance
+            coming next · v1 Appliance preview
           </div>
           <h3 className="display mt-5 text-[26px] sm:text-[32px] leading-[1.15] text-slate-50 font-normal">
             More compute. More storage.<br/>
             <em className="cream italic">More ports for everything.</em>
           </h3>
           <div className="mt-5 text-[15px] leading-[1.7] text-slate-400 space-y-3">
-            <p>The next Appliance steps up to a faceted matte-black enclosure with a full back-panel of I/O — gigabit Ethernet, USB-A 3.0, microSD, dedicated power. Same software stack as the v0 Appliance, larger headroom for bigger knowledge bases and faster local inference.</p>
+            <p>The v1 Appliance steps up to a faceted matte-black enclosure with a full back-panel of I/O — gigabit Ethernet, USB-A 3.0, microSD, dedicated power. Same software stack as the v0 Appliance, larger headroom for bigger knowledge bases and faster local inference.</p>
             <p>If you&rsquo;re evaluating for a corner-of-the-desk install where ports matter, this is the one to wait for.</p>
           </div>
           <a href="https://cognitum.one" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 mt-6 mono text-[11px] uppercase tracking-widest text-amber-300/80 hover:text-amber-300 transition group">
@@ -424,7 +424,7 @@ function SeedTwoPreview() {
           <div className="relative aspect-square rounded-[6px] overflow-hidden border border-slate-800 bg-slate-900">
             <Image
               src="/img/seed-two-preview.png"
-              alt="next Cognitum Appliance next-gen device — top-down view of a matte-black enclosure with a faceted geometric top surface and the 'cognitum' wordmark on the front face."
+              alt="Cognitum v1 Appliance — top-down view of a matte-black enclosure with a faceted geometric top surface and the 'cognitum' wordmark on the front face."
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 30vw, 50vw"
