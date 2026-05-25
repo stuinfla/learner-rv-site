@@ -133,10 +133,10 @@ export default function Page() {
   return (
     <main className="min-h-screen text-slate-200">
       <Header bridge={bridge} />
-      <div className="max-w-4xl mx-auto px-5 sm:px-6 pb-24">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 pb-24">
         {/* Welcome ALWAYS shows first for new users, regardless of bridge state.
             Only after they click "Start the tour" do we check the bridge. */}
-        {step === "welcome" && <WelcomeStep onContinue={finishWelcome} />}
+        {step === "welcome" && <WelcomeStep onContinue={finishWelcome} bridge={bridge} />}
         {step !== "welcome" && bridge === "checking" && <CheckingBridge />}
         {step !== "welcome" && bridge === "offline" && <Offline />}
         {step !== "welcome" && bridge === "online" && status && (
@@ -191,12 +191,26 @@ export default function Page() {
 
 // ── Welcome (educational pre-flow) ─────────────────────────────────────────
 
-function WelcomeStep({ onContinue }: { onContinue: () => void }) {
+function WelcomeStep({ onContinue, bridge }: { onContinue: () => void; bridge: BridgeState }) {
   return (
     <div className="py-8">
+      {/* Preview-mode ribbon — only shows when bridge isn't live */}
+      {bridge !== "online" && (
+        <div className="mb-8 px-5 py-4 rounded-[6px] border border-amber-300/30 bg-amber-300/[0.05] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex items-start gap-3">
+            <span className="w-1.5 h-1.5 mt-2 bg-amber-400 rounded-full flex-none animate-pulse" />
+            <div>
+              <div className="text-slate-100 text-[14px] font-medium">You&rsquo;re in preview mode.</div>
+              <div className="text-slate-400 text-[13px] mt-0.5">Read the tour — no install needed. The interactive scan / ingest / chat steps unlock when you run <code className="font-mono text-amber-200">learn ui</code> on your Mac.</div>
+            </div>
+          </div>
+          <Link href="/#install" className="font-mono text-[10px] uppercase tracking-widest text-amber-300 hover:text-amber-200 whitespace-nowrap">install instructions →</Link>
+        </div>
+      )}
+
       {/* Skip link top-right */}
       <div className="flex justify-end mb-8">
-        <button onClick={onContinue} className="mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition flex items-center gap-2">
+        <button onClick={onContinue} className="font-mono text-[10px] uppercase tracking-widest text-slate-400 hover:text-amber-300 transition flex items-center gap-2 min-h-[44px] px-2">
           skip the intro <span aria-hidden>→</span>
         </button>
       </div>
@@ -391,15 +405,30 @@ function PlanStep({ n, title, children }: { n: string; title: string; children: 
 
 function Header({ bridge }: { bridge: BridgeState }) {
   return (
-    <header className="border-b border-slate-800 bg-slate-950/80 backdrop-blur sticky top-0 z-10">
-      <div className="max-w-4xl mx-auto px-5 sm:px-6 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <span className="font-mono text-sm tracking-wider text-slate-100 group-hover:text-amber-300 transition">cognitum-learn</span>
-          <span className="font-mono text-[10px] uppercase tracking-widest text-slate-500" data-version>{COGNITUM_LEARN_VERSION}</span>
+    <header className="sticky top-0 z-50 backdrop-blur bg-slate-950/80 border-b border-slate-800">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 h-16 flex items-center justify-between gap-3">
+        <Link href="/" className="flex items-center gap-2 sm:gap-3 min-w-0 group">
+          <BrandMark className="w-7 h-7 flex-none" />
+          <span className="font-medium tracking-tight text-slate-100 whitespace-nowrap group-hover:text-amber-300 transition">cognitum-learn</span>
+          <span className="font-mono text-[10px] text-slate-500 uppercase tracking-widest whitespace-nowrap" data-version>{COGNITUM_LEARN_VERSION}</span>
         </Link>
         <BridgePill bridge={bridge} />
       </div>
     </header>
+  );
+}
+
+function BrandMark({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 28 28" className={className} aria-hidden>
+      <circle cx="14" cy="14" r="11" fill="none" stroke="#fcd34d" strokeWidth="1.2" opacity="0.4" />
+      <circle cx="14" cy="14" r="6" fill="none" stroke="#38bdf8" strokeWidth="1.2" />
+      <circle cx="14" cy="14" r="2" fill="#fb923c" />
+      <line x1="14" y1="3" x2="14" y2="6" stroke="#fcd34d" strokeWidth="1" opacity="0.5" />
+      <line x1="14" y1="22" x2="14" y2="25" stroke="#fcd34d" strokeWidth="1" opacity="0.5" />
+      <line x1="3" y1="14" x2="6" y2="14" stroke="#fcd34d" strokeWidth="1" opacity="0.5" />
+      <line x1="22" y1="14" x2="25" y2="14" stroke="#fcd34d" strokeWidth="1" opacity="0.5" />
+    </svg>
   );
 }
 
@@ -428,6 +457,36 @@ function CheckingBridge() {
 }
 
 // ── Offline (3 install tabs) ────────────────────────────────────────────────
+
+function ErrorPanel({ title, hint, onRetry, onBack }: {
+  title: string;
+  hint: string;
+  onRetry?: () => void;
+  onBack?: () => void;
+}) {
+  return (
+    <div className="border border-rose-500/30 rounded-[6px] p-6 bg-rose-500/[0.05] max-w-2xl mb-10">
+      <div className="font-mono text-[11px] uppercase tracking-widest text-rose-300 mb-3 flex items-center gap-2">
+        <span className="inline-block w-3 h-px bg-rose-300" />
+        SOMETHING BROKE
+      </div>
+      <h3 className="text-lg font-semibold text-slate-100 mb-2">{title}</h3>
+      <p className="text-slate-300 text-[14px] mb-5 leading-relaxed">{hint}</p>
+      <div className="flex flex-wrap gap-3">
+        {onRetry && (
+          <button onClick={onRetry} className="px-5 py-2.5 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px] min-h-[44px]">
+            Try again
+          </button>
+        )}
+        {onBack && (
+          <button onClick={onBack} className="px-5 py-2.5 border border-slate-700 text-slate-200 font-medium hover:border-amber-300 hover:text-amber-300 transition rounded-[4px] min-h-[44px]">
+            Go back a step
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
 
 function Offline() {
   const [tab, setTab] = useState<"cargo" | "brew" | "download">("cargo");
@@ -659,6 +718,20 @@ function SeedStep({ status, seedName, setSeedName, onPaired }: {
             <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Make sure your Seed is plugged in and powered on.</li>
             <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Confirm your Seed is on the same WiFi network as this laptop.</li>
             <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>If it&rsquo;s connected by USB, it&rsquo;s probably at <code className="font-mono text-amber-200">169.254.42.1</code>.</li>
+            <li className="flex items-start gap-3">
+              <span className="text-amber-300 mt-0.5">·</span>
+              <details className="flex-1 group/d">
+                <summary className="cursor-pointer hover:text-amber-300 transition list-none flex items-center gap-2 min-h-[44px] py-2">
+                  <span className="text-amber-300 transition-transform duration-200 group-open/d:rotate-45 text-base leading-none">+</span>
+                  Don&rsquo;t know your Seed&rsquo;s IP? Three ways to find it.
+                </summary>
+                <div className="mt-2 ml-1 space-y-2.5 text-[13px] text-slate-400 border-t border-slate-800 pt-3">
+                  <div><span className="font-mono text-[10px] uppercase tracking-widest text-amber-300 mr-2">Easiest</span>Look at the LED matrix on the Seed itself — IP shows on boot.</div>
+                  <div><span className="font-mono text-[10px] uppercase tracking-widest text-amber-300 mr-2">From Mac</span>Open Terminal and run <code className="font-mono text-amber-200">arp -a | grep -i cognitum</code></div>
+                  <div><span className="font-mono text-[10px] uppercase tracking-widest text-amber-300 mr-2">From router</span>Open your router admin page (usually <code className="font-mono text-amber-200">192.168.1.1</code>) → connected devices → look for &ldquo;cognitum-seed.&rdquo;</div>
+                </div>
+              </details>
+            </li>
           </ul>
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
             <button
@@ -717,7 +790,7 @@ function FoundCard({ ip, seedName, setSeedName, onPair }: {
       <div className="space-y-4">
         <div>
           <label className="font-mono text-[10px] uppercase tracking-widest text-slate-400 block mb-1.5">
-            What do you want to call this Appliance?
+            What do you want to call this Seed?
           </label>
           <input
             value={seedName}
@@ -782,9 +855,26 @@ function TopicStep({ topics, onStarter, onCustom, onExisting }: {
       <p className="text-slate-400 text-[15px] leading-relaxed mb-3 max-w-2xl">
         Pick a starter. Your Seed will go pull 3–5 of the best YouTube channels on it, watch all 15+ hours, synthesize what they agree and disagree on, and hold it forever. About ten minutes of patience.
       </p>
-      <p className="text-slate-500 text-[13px] leading-relaxed mb-10 max-w-2xl italic">
-        Tip: the more specific your topic, the more uncanny the answers. &ldquo;Day trading&rdquo; is mush. &ldquo;Day trading the SPY with 0DTE options&rdquo; will get you a real expert.
-      </p>
+      <div className="mb-10 border border-slate-800 bg-slate-900/30 rounded-[6px] p-5 max-w-2xl">
+        <div className="font-mono text-[10px] uppercase tracking-widest text-emerald-300 mb-3 flex items-center gap-2">
+          <span className="inline-block w-3 h-px bg-emerald-300" />
+          What makes a good topic
+        </div>
+        <ul className="space-y-3 text-slate-300 text-[14px] leading-relaxed">
+          <li className="flex gap-3">
+            <span className="text-amber-300 font-mono text-[10px] uppercase tracking-widest mt-1 flex-none w-20">Specific</span>
+            <span>&ldquo;Day trading SPY 0DTE options&rdquo; beats &ldquo;day trading.&rdquo; The narrower the topic, the sharper the answers.</span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-amber-300 font-mono text-[10px] uppercase tracking-widest mt-1 flex-none w-20">3–5 sources</span>
+            <span>Pick channels where experts disagree productively. The synthesis is what makes it valuable.</span>
+          </li>
+          <li className="flex gap-3">
+            <span className="text-amber-300 font-mono text-[10px] uppercase tracking-widest mt-1 flex-none w-20">10–30 hrs</span>
+            <span>Sweet spot: enough video to be deep, not so much you wait an hour. Roughly 6–15 min ingest per channel.</span>
+          </li>
+        </ul>
+      </div>
 
       <div className="font-mono text-[10px] uppercase tracking-widest text-amber-300 mb-4 flex items-center gap-2">
         <span className="inline-block w-3 h-px bg-amber-300" />
@@ -886,6 +976,7 @@ function IngestStep({ topic, seedName, onDone }: {
   const [chunks, setChunks] = useState(0);
   const [concepts, setConcepts] = useState(0);
   const [stalled, setStalled] = useState(false);
+  const [errored, setErrored] = useState(false);
   const esRef = useRef<EventSource | null>(null);
   const lastEventAt = useRef(Date.now());
 
@@ -933,7 +1024,7 @@ function IngestStep({ topic, seedName, onDone }: {
         }
       } catch {}
     };
-    es.onerror = () => { es.close(); setRunning(false); };
+    es.onerror = () => { es.close(); setRunning(false); setErrored(true); };
 
     return () => { es.close(); };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -956,9 +1047,23 @@ function IngestStep({ topic, seedName, onDone }: {
       <h2 className="display text-[36px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-2">
         Your Seed is <em className="text-amber-300 italic">studying</em>.
       </h2>
-      <p className="text-slate-400 text-[15px] mb-10 max-w-2xl">
-        Grab a coffee. {seedName} is fetching videos, transcribing every word, and distilling each one into vectors. About ten minutes of patience for years of expertise.
+      <p className="text-slate-400 text-[15px] mb-4 max-w-2xl">
+        Grab a coffee. {seedName} is fetching videos, transcribing every word, and distilling each one into vectors.
       </p>
+      <div className="mb-10 inline-flex flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2.5 rounded-[4px] border border-slate-800 bg-slate-900/40">
+        <span className="font-mono text-[10px] uppercase tracking-widest text-emerald-300">typical · 6–12 min</span>
+        <span className="text-slate-600 hidden sm:inline">·</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-slate-400">3 channels · ~15 hrs of video</span>
+      </div>
+
+      {errored && (
+        <ErrorPanel
+          title="Lost the connection to your bridge while learning."
+          hint="The bridge process on your Mac may have stopped, or the network blinked. Your partial progress is saved — try again to resume."
+          onRetry={() => window.location.reload()}
+          onBack={() => onDone({ videos: 0, chunks: 0, concepts: 0 })}
+        />
+      )}
 
       <div className="grid lg:grid-cols-12 gap-8">
         {/* LEFT: ring + phase + counters */}
@@ -1229,7 +1334,7 @@ function ChatStep({ topics, seedName, initialTopic, initialQuestion }: {
 function Footer() {
   return (
     <footer className="mt-12 py-8 border-t border-slate-800">
-      <div className="max-w-4xl mx-auto px-5 sm:px-6 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
+      <div className="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-12 flex flex-wrap items-center justify-between gap-4 font-mono text-[11px] uppercase tracking-widest text-slate-500">
         <span>cognitum-learn <span data-version-footer>{COGNITUM_LEARN_VERSION}</span> · your hardware, your data</span>
         <Link href="/" className="hover:text-amber-300 transition">← back to homepage</Link>
       </div>

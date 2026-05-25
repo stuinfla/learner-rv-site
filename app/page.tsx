@@ -75,7 +75,7 @@ function Hero() {
           src="/img/hero-desk.png"
           alt=""
           fill
-          priority
+          loading="lazy"
           className="object-cover opacity-[0.18]"
           sizes="100vw"
         />
@@ -95,7 +95,7 @@ function Hero() {
                   fill
                   priority
                   className="object-cover"
-                  sizes="(min-width: 1024px) 56vw, 100vw"
+                  sizes="(min-width: 1024px) 56vw, (min-width: 640px) 90vw, 92vw"
                 />
 
                 {/* Top-right "now shipping" pill */}
@@ -293,7 +293,12 @@ function SovereigntyPanel() {
           </p>
         </div>
 
-        <div className="mt-14 border border-slate-800 rounded-[4px] overflow-x-auto">
+        <div
+          className="mt-14 border border-slate-800 rounded-[4px] overflow-x-auto -mx-2 sm:mx-0"
+          tabIndex={0}
+          role="region"
+          aria-label="Capability comparison: Cognitum Learn vs NotebookLM, ChatGPT, and Perplexity"
+        >
           <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="bg-slate-900/60 border-b border-slate-800">
