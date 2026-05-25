@@ -11,9 +11,9 @@ export default function Home() {
       <SiteHeader />
       <Hero />
       <LiveWalkthrough />
+      <DataFlow />
       <CitedAnswerDemo />
       <WhileYouSleep />
-      <UnderTheHood />
       <BrainVectors />
       <Story />
       <SovereigntyPanel />
@@ -91,7 +91,7 @@ function Hero() {
               <div className="relative aspect-[4/3] sm:aspect-[3/2] lg:aspect-[4/3] rounded-[8px] overflow-hidden border border-amber-500/25 shadow-2xl shadow-amber-900/40 ring-1 ring-inset ring-amber-300/10">
                 <Image
                   src="/img/seed-box.png"
-                  alt="The Cognitum One Appliance — a flat matte-black appliance with the COGNITUM wordmark on top, sitting on a MacBook keyboard for scale."
+                  alt="The Cognitum One Seed — a flat matte-black appliance with the COGNITUM wordmark on top, sitting on a MacBook keyboard for scale."
                   fill
                   priority
                   className="object-cover"
@@ -101,14 +101,14 @@ function Hero() {
                 {/* Top-right "now shipping" pill */}
                 <div className="absolute top-4 right-4 inline-flex items-center gap-2 bg-slate-950/85 backdrop-blur border border-emerald-500/30 px-2.5 py-1 rounded-[3px]">
                   <span className="w-1.5 h-1.5 bg-emerald-400 animate-pulse" />
-                  <span className="mono text-[10px] uppercase tracking-widest text-emerald-300">v0 Appliance · now shipping</span>
+                  <span className="mono text-[10px] uppercase tracking-widest text-emerald-300">Cognitum One Seed · now shipping</span>
                 </div>
 
                 {/* Floating mono label overlay — anchors what they're looking at */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent">
                   <div className="mono text-[10px] uppercase tracking-widest text-amber-200 flex items-center gap-2">
                     <span className="inline-block w-3 h-px bg-amber-300/70" />
-                    Cognitum One Appliance · sized to live next to your machine
+                    Cognitum One Seed · sized to live next to your machine
                   </div>
                 </div>
               </div>
@@ -138,7 +138,7 @@ function Hero() {
                 <span>shipping <span className="text-emerald-300">{COGNITUM_LEARN_VERSION}</span></span>
               </span>
               <span className="text-slate-700">·</span>
-              <span>pairs with the <a href="#hardware" className="text-amber-300/80 hover:text-amber-300 underline decoration-amber-500/30 underline-offset-2">Cognitum One Appliance</a></span>
+              <span>pairs with the <a href="#hardware" className="text-amber-300/80 hover:text-amber-300 underline decoration-amber-500/30 underline-offset-2">Cognitum One Seed</a></span>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ function Story() {
           </div>
           <div className="lg:col-span-7 text-[17px] leading-[1.75] text-slate-300 space-y-5">
             <p>This is for the topics where the answer lives across <em className="text-amber-300 not-italic">five different experts and forty hours of YouTube</em>. Retirement planning at 45. Day trading with AI to beat the retail average. Building a 10kW DIY solar install. Six weeks across Southeast Asia under $4k.</p>
-            <p>The kind of question where you&rsquo;d need to watch a dozen long videos, take notes, cross-reference what disagrees, and remember it months later. Your Appliance does that. It does the watching, the synthesizing, and the remembering — so you do the thinking.</p>
+            <p>The kind of question where you&rsquo;d need to watch a dozen long videos, take notes, cross-reference what disagrees, and remember it months later. Your Seed does that. It does the watching, the synthesizing, and the remembering — so you do the thinking.</p>
             <p>Then it answers — citing the exact timestamp in the exact video — until you know the field better than the people who&rsquo;ve been selling courses about it.</p>
           </div>
         </div>
@@ -198,8 +198,8 @@ function BrainVectors() {
             </h2>
             <div className="mt-8 space-y-5 text-[17px] leading-[1.75] text-slate-300">
               <p>Your brain doesn&rsquo;t store an MP4 of every lecture you&rsquo;ve ever attended. It stores <em className="text-amber-300 not-italic">meaning</em>. Patterns. The exact moment the speaker said the thing that made the rest of the talk make sense.</p>
-              <p>Your Appliance does the same. Every minute of video becomes a few thousand small mathematical fingerprints — <em className="text-amber-300 not-italic">vectors</em> — that hold &ldquo;this is the part about preserving wild salmon runs&rdquo; or &ldquo;this is where she finally explains options theta decay.&rdquo;</p>
-              <p>Ask the Appliance anything later. The right fingerprints light up in milliseconds. You get the answer with timestamps you can click through and verify.</p>
+              <p>Your Seed does the same. Every minute of video becomes a few thousand small mathematical fingerprints — <em className="text-amber-300 not-italic">vectors</em> — that hold &ldquo;this is the part about preserving wild salmon runs&rdquo; or &ldquo;this is where she finally explains options theta decay.&rdquo;</p>
+              <p>Ask the Seed anything later. The right fingerprints light up in milliseconds. You get the answer with timestamps you can click through and verify.</p>
             </div>
             <blockquote className="display mt-10 text-[20px] sm:text-[24px] italic leading-[1.4] text-amber-200 border-l-2 border-amber-300 pl-5">
               1,024 numbers per moment. Hundreds of thousands per topic. Brain-style recall on a device the size of your wallet.
@@ -216,7 +216,7 @@ function BrainVectors() {
 function WhileYouSleep() {
   const timeline = [
     { t: "9:14 pm", body: "You paste @AndrewHuberman's YouTube channel into the dashboard and close your laptop." },
-    { t: "11:47 pm", body: "Appliance has fetched 38 episodes — about 91 hours of audio." },
+    { t: "11:47 pm", body: "Seed has fetched 38 episodes — about 91 hours of audio." },
     { t: "2:14 am", body: "Every word transcribed locally. Every speaker labeled. Every chapter found." },
     { t: "3:22 am", body: "14,800 vector chunks indexed in HNSW. Searchable in 12 ms." },
     { t: "7:00 am", body: <>You pour coffee. You ask: <span className="text-amber-300">&ldquo;what does Huberman actually say about morning light?&rdquo;</span> Answer in 850 ms with six cited timestamps you can click through.</> },
@@ -229,7 +229,7 @@ function WhileYouSleep() {
             <Eyebrow warm>WHILE YOU SLEEP</Eyebrow>
             <h2 className="display mt-5 text-[36px] sm:text-[52px] leading-[1.05] text-slate-50 font-normal">
               You went to bed.<br/>
-              <em className="cream italic">Your Appliance went to work.</em>
+              <em className="cream italic">Your Seed went to work.</em>
             </h2>
             <p className="mt-8 text-[17px] leading-[1.7] text-slate-400">
               It does the watching. You wake up the expert. The whole reason you bought the device — autonomous research, on hardware that doesn&rsquo;t need permission from a vendor.
@@ -349,7 +349,7 @@ function SeedHardware() {
             <div className="relative aspect-[4/3] rounded-[6px] overflow-hidden border border-slate-800 bg-gradient-to-b from-slate-900 to-slate-950">
               <Image
                 src="/img/seed-on-mac.png"
-                alt="The Cognitum One Appliance photographed front-facing — flat matte-black enclosure with the live LED matrix display visible across the front face, sitting atop a Mac mini."
+                alt="The Cognitum One Seed photographed front-facing — flat matte-black enclosure with the live LED matrix display visible across the front face, sitting atop a Mac mini."
                 fill
                 className="object-cover"
                 sizes="(min-width: 1024px) 40vw, 100vw"
@@ -357,7 +357,7 @@ function SeedHardware() {
             </div>
             <div className="mt-4 mono text-[10px] uppercase tracking-widest text-emerald-300/80 text-center flex items-center justify-center gap-2">
               <span className="w-1.5 h-1.5 bg-emerald-400 animate-pulse" />
-              Cognitum One Appliance · shipping now
+              Cognitum One Seed · shipping now
             </div>
           </div>
 
@@ -369,12 +369,12 @@ function SeedHardware() {
               <em className="cream italic">live LED matrix on the front.</em>
             </h2>
             <div className="mt-6 text-[16px] leading-[1.75] text-slate-300 space-y-4">
-              <p>The Cognitum One Appliance is a small Linux device running <span className="mono text-amber-200">cognitum-agent</span>: a vector database (RuVector, HNSW-indexed) plus local inference, exposed over your network or via USB.</p>
-              <p>The LED matrix on the front face shows ingest progress, query activity, and Appliance status — you can <em className="text-amber-300 not-italic">see</em> when it&rsquo;s working. Plug it in, point it at your sources, watch it light up.</p>
+              <p>The Cognitum One Seed is a small Linux device running <span className="mono text-amber-200">cognitum-agent</span>: a vector database (RuVector, HNSW-indexed) plus local inference, exposed over your network or via USB.</p>
+              <p>The LED matrix on the front face shows ingest progress, query activity, and Seed status — you can <em className="text-amber-300 not-italic">see</em> when it&rsquo;s working. Plug it in, point it at your sources, watch it light up.</p>
             </div>
             <dl className="mt-8 space-y-3 border-l border-amber-300/30 pl-6">
               <SpecRow label="Footprint">Palm-sized, flat horizontal enclosure. Lives quietly on a bookshelf.</SpecRow>
-              <SpecRow label="Display">Live LED matrix — ingest progress, query activity, Appliance status.</SpecRow>
+              <SpecRow label="Display">Live LED matrix — ingest progress, query activity, Seed status.</SpecRow>
               <SpecRow label="Storage">microSD. Hundreds of hours of transcribed video per card.</SpecRow>
               <SpecRow label="Power">USB-powered. Sips current. Run it 24/7 and forget about it.</SpecRow>
               <SpecRow label="Networking">WiFi · mDNS discovery · USB gadget mode for travel.</SpecRow>
@@ -403,14 +403,14 @@ function SeedTwoPreview() {
         <div className="lg:col-span-5">
           <div className="inline-flex items-center gap-2 mono text-[11px] uppercase tracking-widest text-amber-300/90 border border-amber-500/30 bg-amber-500/5 px-3 py-1.5 rounded-[3px]">
             <span className="w-1.5 h-1.5 bg-amber-400" />
-            coming next · v1 Appliance preview
+            coming next · next-generation Seed
           </div>
           <h3 className="display mt-5 text-[26px] sm:text-[32px] leading-[1.15] text-slate-50 font-normal">
             More compute. More storage.<br/>
             <em className="cream italic">More ports for everything.</em>
           </h3>
           <div className="mt-5 text-[15px] leading-[1.7] text-slate-400 space-y-3">
-            <p>The v1 Appliance steps up to a faceted matte-black enclosure with a full back-panel of I/O — gigabit Ethernet, USB-A 3.0, microSD, dedicated power. Same software stack as the v0 Appliance, larger headroom for bigger knowledge bases and faster local inference.</p>
+            <p>The next-generation Cognitum One Seed steps up to a faceted matte-black enclosure with a full back-panel of I/O — gigabit Ethernet, USB-A 3.0, microSD, dedicated power. Same software stack as your Seed, larger headroom for bigger knowledge bases and faster local inference.</p>
             <p>If you&rsquo;re evaluating for a corner-of-the-desk install where ports matter, this is the one to wait for.</p>
           </div>
           <a href="https://cognitum.one" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 mt-6 mono text-[11px] uppercase tracking-widest text-amber-300/80 hover:text-amber-300 transition group">
@@ -424,7 +424,7 @@ function SeedTwoPreview() {
           <div className="relative aspect-square rounded-[6px] overflow-hidden border border-slate-800 bg-slate-900">
             <Image
               src="/img/seed-two-preview.png"
-              alt="Cognitum v1 Appliance — top-down view of a matte-black enclosure with a faceted geometric top surface and the 'cognitum' wordmark on the front face."
+              alt="Cognitum One Seed — next-gen — top-down view of a matte-black enclosure with a faceted geometric top surface and the 'cognitum' wordmark on the front face."
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 30vw, 50vw"
@@ -495,7 +495,7 @@ function Install() {
             <InstallCard step="3" title="Start the local bridge">
               <CodeLine>learn ui</CodeLine>
               <p className="mt-3 text-slate-400 text-[13px] leading-relaxed">
-                Opens a browser at <span className="mono text-amber-200">http://127.0.0.1:7878</span>. Scans your network for your Appliance automatically. From there, drive everything from <Link href="/start" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">this site&rsquo;s dashboard</Link> — it talks to your bridge over localhost, never the cloud.
+                Opens a browser at <span className="mono text-amber-200">http://127.0.0.1:7878</span>. Scans your network for your Seed automatically. From there, drive everything from <Link href="/start" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">this site&rsquo;s dashboard</Link> — it talks to your bridge over localhost, never the cloud.
               </p>
             </InstallCard>
           </div>
@@ -531,23 +531,23 @@ function FAQ() {
   const items = [
     {
       q: "Can I really build an expert on anything?",
-      a: <>If you can point <span className="mono text-amber-200">yt-dlp</span> at it, your Appliance can learn it. YouTube channels, playlists, podcast RSS feeds, recorded lectures, local <span className="mono">.mp4 / .mkv</span> files. The more focused the topic, the more uncanny the result.</>
+      a: <>If you can point <span className="mono text-amber-200">yt-dlp</span> at it, your Seed can learn it. YouTube channels, playlists, podcast RSS feeds, recorded lectures, local <span className="mono">.mp4 / .mkv</span> files. The more focused the topic, the more uncanny the result.</>
     },
     {
       q: "How is this different from feeding ChatGPT a PDF?",
-      a: <>You can&rsquo;t ask ChatGPT to watch 91 hours of Huberman overnight and stay within the context window. You can&rsquo;t ask it to remember the answer next week. You can&rsquo;t take the knowledge with you when OpenAI changes their pricing. Your Appliance does all three.</>
+      a: <>You can&rsquo;t ask ChatGPT to watch 91 hours of Huberman overnight and stay within the context window. You can&rsquo;t ask it to remember the answer next week. You can&rsquo;t take the knowledge with you when OpenAI changes their pricing. Your Seed does all three.</>
     },
     {
       q: "Does this need internet?",
-      a: <>To ingest: yes — to fetch videos and run captioning. To query your Appliance afterward: no. Set <span className="mono text-amber-200">LEARN_SYNTH_LOCAL=1</span> and answer synthesis runs entirely on your hardware too.</>
+      a: <>To ingest: yes — to fetch videos and run captioning. To query your Seed afterward: no. Set <span className="mono text-amber-200">LEARN_SYNTH_LOCAL=1</span> and answer synthesis runs entirely on your hardware too.</>
     },
     {
-      q: "How does this page talk to my Appliance?",
-      a: <>It doesn&rsquo;t — directly. Browsers can&rsquo;t reach <span className="mono">169.254.x.x</span> from an HTTPS page (mixed-content blocking). This page&rsquo;s JavaScript talks to <span className="mono">127.0.0.1:7878</span> on <em className="text-amber-300 not-italic">your</em> machine (browsers exempt localhost). That bridge talks to your Appliance. Vercel serves bytes; your content never crosses the public internet.</>
+      q: "How does this page talk to my Seed?",
+      a: <>It doesn&rsquo;t — directly. Browsers can&rsquo;t reach <span className="mono">169.254.x.x</span> from an HTTPS page (mixed-content blocking). This page&rsquo;s JavaScript talks to <span className="mono">127.0.0.1:7878</span> on <em className="text-amber-300 not-italic">your</em> machine (browsers exempt localhost). That bridge talks to your Seed. Vercel serves bytes; your content never crosses the public internet.</>
     },
     {
-      q: "What if I don&rsquo;t have an Appliance yet?",
-      a: <>The CLI works standalone — your KB lives as a <span className="mono">.rvf</span> file on your laptop. Without an Appliance you lose the always-on, sips-power, plug-and-share device. <a className="text-amber-300 hover:underline" href="https://cognitum.one">Get one →</a></>
+      q: "What if I don&rsquo;t have a Seed yet?",
+      a: <>The CLI works standalone — your KB lives as a <span className="mono">.rvf</span> file on your laptop. Without a Seed you lose the always-on, sips-power, plug-and-share device. <a className="text-amber-300 hover:underline" href="https://cognitum.one">Get one →</a></>
     },
     {
       q: "What does it cost?",
@@ -604,14 +604,14 @@ function MondayMorning() {
           <em className="cream italic">looks like</em> now.
         </h2>
         <p className="mt-8 text-slate-300 text-[17px] leading-[1.7] max-w-2xl mx-auto">
-          You unbox your Appliance. You point it at the channels and feeds and lectures you&rsquo;ve been meaning to get to for a year. It works while you sleep. You wake up the world&rsquo;s foremost authority — on the things that matter to <em className="text-amber-300 not-italic">you</em>.
+          You unbox your Seed. You point it at the channels and feeds and lectures you&rsquo;ve been meaning to get to for a year. It works while you sleep. You wake up the world&rsquo;s foremost authority — on the things that matter to <em className="text-amber-300 not-italic">you</em>.
         </p>
         <div className="mt-12 flex flex-wrap justify-center gap-3">
           <Link href="/start" className="inline-flex items-center gap-2 px-7 py-3.5 bg-amber-300 text-slate-950 font-semibold hover:bg-amber-200 transition rounded-[4px]">
             Open the dashboard <span aria-hidden>→</span>
           </Link>
           <a href="https://cognitum.one" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-7 py-3.5 border border-amber-500 text-amber-300 font-semibold hover:bg-amber-500 hover:text-slate-950 transition rounded-[4px]">
-            Get the Cognitum One Appliance
+            Get the Cognitum One Seed
           </a>
         </div>
       </div>
@@ -648,13 +648,13 @@ function LiveWalkthrough() {
     {
       cmd: "learn doctor",
       title: "Verify the setup",
-      blurb: "Checks the Rust toolchain, ffmpeg, yt-dlp, your Anthropic key, and whether an Appliance is reachable on the network.",
+      blurb: "Checks the Rust toolchain, ffmpeg, yt-dlp, your Anthropic key, and whether a Seed is reachable on the network on the network.",
       mock: [
         "✓ Rust 1.87.0",
         "✓ ffmpeg 7.1",
         "✓ yt-dlp 2026.05",
         "✓ ANTHROPIC_API_KEY",
-        "✓ Appliance @ 192.168.1.42 (1.2 ms)",
+        "✓ Seed @ 192.168.1.42 (1.2 ms)",
       ],
     },
     {
@@ -683,12 +683,12 @@ function LiveWalkthrough() {
     },
     {
       cmd: "learn push longevity",
-      title: "Push it to your Appliance",
-      blurb: "Transfers the .rvf to the Cognitum One Appliance. From then on, the Appliance answers your questions, on-device, even offline.",
+      title: "Push it to your Seed",
+      blurb: "Transfers the .rvf to the Cognitum One Seed. From then on, the Seed answers your questions, on-device, even offline.",
       mock: [
         "→ packaging longevity.rvf (47 MB)",
         "→ pushing to Cognitum @ 192.168.1.42",
-        "✓ Appliance now serving longevity",
+        "✓ Seed now serving longevity",
         "  query it via MCP, REST, or the dashboard",
       ],
     },
@@ -707,7 +707,7 @@ function LiveWalkthrough() {
           </div>
           <div className="lg:col-span-5 text-[15px] leading-[1.7] text-slate-400">
             <p>
-              No GUI to learn, no account to create. Each card below is one of the four commands the binary prints when you run it. Top to bottom is the full path from empty disk to an Appliance answering questions.
+              No GUI to learn, no account to create. Each card below is one of the four commands the binary prints when you run it. Top to bottom is the full path from empty disk to a Seed answering questions.
             </p>
           </div>
         </div>
@@ -752,38 +752,162 @@ function LiveWalkthrough() {
   );
 }
 
-// ── Under the hood (the technical depth, soft-served) ─────────────────────
+// ── Data Flow (the pipeline, told as a story) ─────────────────────────────
 
-function UnderTheHood() {
+function DataFlow() {
+  const stages = [
+    {
+      num: "01",
+      name: "Discover",
+      where: "mac",
+      blurb: "Cognitum finds the best videos on your topic and ranks them for you.",
+      detail:
+        "On `learn study`, it asks Claude to curate the top channels for your topic, then orders individual videos by signal-to-noise. Skip with `learn ingest` if you already have URLs.",
+    },
+    {
+      num: "02",
+      name: "Acquire & Read",
+      where: "mac",
+      blurb: "Each video is downloaded; captions are pulled straight from the source.",
+      detail:
+        "yt-dlp pulls the audio + caption tracks. If captions are missing, falls back to Whisper.cpp (Metal-accelerated on M-series) for local transcription. No cloud round-trip for the audio.",
+    },
+    {
+      num: "03",
+      name: "Watch",
+      where: "mac",
+      conditional: true,
+      blurb: "When the video is visual — slides, demos, diagrams — it watches the picture too.",
+      detail:
+        "Perceptual-hash variance auto-decides per video. ffmpeg extracts keyframes; Claude Sonnet vision captions them. Skipped for talking-heads to save tokens.",
+    },
+    {
+      num: "04",
+      name: "Understand",
+      where: "mac",
+      blurb: "Every moment becomes a 384-dim fingerprint, anchored to its exact timestamp.",
+      detail:
+        "Sentence-aware chunking with stable SHA-256 claim IDs, then BGE-small-en-v1.5 (384-dim ONNX) on Metal. ~50 ms per chunk. The vectors are how questions find their answers.",
+    },
+    {
+      num: "05",
+      name: "Seal",
+      where: "mac",
+      blurb: "Everything is written into one signed .rvf file you own — proof attached to every claim.",
+      detail:
+        "Append-only binary: HNSW vector index + content-addressable chunks + Ed25519 witness chain. Open with the rvf CLI or @ruvector/rvf in Node. Survives the vendor.",
+      hasRvfDef: true,
+    },
+    {
+      num: "06",
+      name: "Deliver to Seed",
+      where: "seed",
+      blurb: "The finished expert lands on your Cognitum One Seed — answering offline, forever.",
+      detail:
+        "mDNS discovers your Seed on the local network; vectors push over HTTP. The Seed stores them in its own RVF store and serves queries via MCP, REST, or the dashboard. Your Mac can power off — the Seed stays live.",
+    },
+  ];
+
   return (
-    <section className="border-b border-slate-800">
-      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-24">
-        <div className="grid lg:grid-cols-12 gap-12 items-start">
-          <div className="lg:col-span-5">
-            <Eyebrow warm>UNDER THE HOOD</Eyebrow>
-            <h2 className="display mt-5 text-[32px] sm:text-[40px] leading-[1.1] text-slate-50 font-normal">
-              Eight stages.<br/>
-              <em className="cream italic">All local. Zero cloud round-trips during ingest.</em>
-            </h2>
-            <p className="mt-6 text-slate-400 text-[15.5px] leading-[1.7]">
-              Source acquisition through Ed25519-witnessed storage. Whisper.cpp for ASR, BGE-small-en-v1.5 (384-dim ONNX) for embeddings, HNSW for sub-millisecond recall. The Anthropic API only enters when you call <span className="mono text-amber-200">learn ask</span> — and even that can be swapped for local inference with <span className="mono text-amber-200">LEARN_SYNTH_LOCAL=1</span>.
-            </p>
-            <p className="mt-5 mono text-[11px] uppercase tracking-widest text-slate-600 leading-relaxed">
-              17 crates · pure rust · ~50 ms embed per chunk on M-series
-            </p>
-          </div>
-
+    <section id="dataflow" className="border-b border-slate-800 bg-slate-950">
+      <div className="max-w-[1280px] mx-auto px-6 lg:px-12 py-24 lg:py-28">
+        {/* Section header */}
+        <div className="grid lg:grid-cols-12 gap-10 items-end mb-12 lg:mb-14">
           <div className="lg:col-span-7">
-            <div className="rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-3 lg:p-4">
-              <img
-                src="/svg/ingest-pipeline.svg"
-                alt="Cognitum Learn ingest pipeline: source → acquire → keyframes → transcribe → chunk → embed → index → witness."
-                className="w-full h-auto"
-                loading="lazy"
-              />
-            </div>
+            <Eyebrow warm>FROM A VIDEO TO YOUR SEED</Eyebrow>
+            <h2 className="display mt-5 text-[34px] sm:text-[44px] leading-[1.05] text-slate-50 font-normal">
+              Six stages.<br/>
+              <em className="cream italic">Two devices. One destination.</em>
+            </h2>
+          </div>
+          <div className="lg:col-span-5 text-[15px] leading-[1.7] text-slate-400">
+            <p>
+              Your Mac does the temporary work — downloading, watching, learning. Your <span className="text-emerald-300">Cognitum One Seed</span> gets the permanent result: one signed file that holds the whole knowledge base, ready to answer questions on-device, offline, forever.
+            </p>
           </div>
         </div>
+
+        {/* Compute-zone labels above the pipeline (desktop only) */}
+        <div className="hidden lg:grid grid-cols-6 gap-2 mb-3">
+          <div className="col-span-5 mono text-[10px] uppercase tracking-widest text-slate-500 flex items-center gap-2">
+            <span className="inline-block w-3 h-px bg-slate-600" />
+            on your Mac · temporary workspace
+          </div>
+          <div className="col-span-1 mono text-[10px] uppercase tracking-widest text-emerald-300 flex items-center gap-2">
+            <span className="inline-block w-3 h-px bg-emerald-400/60" />
+            on your Seed
+          </div>
+        </div>
+
+        {/* The pipeline */}
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3 lg:gap-2.5 relative">
+          {stages.map((stage, i) => (
+            <li
+              key={stage.num}
+              className={`group relative rounded-[6px] border p-4 lg:p-5 transition-colors duration-200 ${
+                stage.where === "seed"
+                  ? "border-emerald-500/40 bg-emerald-500/[0.05] hover:bg-emerald-500/[0.08]"
+                  : "border-slate-800 bg-slate-900/30 hover:border-amber-500/30 hover:bg-slate-900/50"
+              }`}
+            >
+              {/* Pulse connector — desktop only, between cards */}
+              {i < stages.length - 1 && (
+                <div
+                  aria-hidden
+                  className="hidden lg:flex absolute top-1/2 -translate-y-1/2 -right-[7px] z-10 items-center justify-center"
+                >
+                  <span className="block w-2.5 h-2.5 rounded-full bg-amber-300/80 animate-pulse" />
+                </div>
+              )}
+
+              <div className={`mono text-[10px] uppercase tracking-widest mb-2 flex items-center justify-between ${
+                stage.where === "seed" ? "text-emerald-300" : "text-amber-300/80"
+              }`}>
+                <span>{stage.num}</span>
+                {stage.conditional && (
+                  <span className="text-slate-500" title="auto-decided per video">· auto</span>
+                )}
+              </div>
+
+              <h3 className="text-[15.5px] sm:text-[16px] font-semibold text-slate-50 mb-2 leading-tight">
+                {stage.name}
+              </h3>
+
+              <p className="text-[13px] leading-[1.55] text-slate-300">
+                {stage.blurb}
+              </p>
+
+              {/* .rvf inline definition box (Stage 5 only) */}
+              {stage.hasRvfDef && (
+                <div className="mt-3 border border-amber-500/25 bg-amber-500/[0.06] rounded-[3px] px-2.5 py-2">
+                  <div className="mono text-[10px] uppercase tracking-widest text-amber-300 mb-0.5">
+                    .rvf
+                  </div>
+                  <div className="text-[11.5px] leading-[1.4] text-amber-100/80">
+                    RuVector File. One signed binary. Your whole knowledge base.
+                  </div>
+                </div>
+              )}
+
+              {/* Click to reveal nerd detail */}
+              <details className="mt-3 group/d">
+                <summary className="list-none cursor-pointer mono text-[10px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition-colors flex items-center gap-2 select-none">
+                  <span className="text-amber-300 transition-transform duration-200 group-open/d:rotate-45 text-base leading-none">+</span>
+                  how it actually runs
+                </summary>
+                <p className="mt-2 text-[12px] leading-[1.55] text-slate-400 border-t border-slate-800 pt-2">
+                  {stage.detail}
+                </p>
+              </details>
+            </li>
+          ))}
+        </ol>
+
+        {/* Footnote */}
+        <p className="mt-10 mono text-[11px] uppercase tracking-widest text-slate-600 flex items-center gap-2">
+          <span className="inline-block w-3 h-px bg-slate-600" />
+          two compute locations · your Mac builds it · your Seed keeps it
+        </p>
       </div>
     </section>
   );

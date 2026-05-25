@@ -213,11 +213,11 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-5">
             <div className="relative aspect-[3/4] rounded-md overflow-hidden border border-slate-800 bg-slate-900">
-              <Image src="/img/seed-product.png" alt="The Cognitum One Appliance — small dark module shown next to its retail box branded COGNITUM seed."
+              <Image src="/img/seed-product.png" alt="The Cognitum One Seed — small dark module shown next to its retail box branded COGNITUM seed."
                 fill className="object-contain" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
             <div className="mt-3 mono text-[10px] uppercase tracking-widest text-slate-500 text-center">
-              your Cognitum One Appliance · the dark module under the box
+              your Cognitum One Seed · the dark module under the box
             </div>
           </div>
           <div className="lg:col-span-7 space-y-4 text-[16px] leading-[1.7] text-slate-300">
@@ -228,7 +228,7 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
                 <span className="inline-block w-3 h-px bg-current" /> wired into a Mac mini
               </summary>
               <div className="mt-4 relative aspect-square max-w-[320px] rounded-md overflow-hidden border border-slate-800">
-                <Image src="/img/seed-on-mac.png" alt="The Cognitum One Appliance dock sitting on top of a Mac Mini host."
+                <Image src="/img/seed-on-mac.png" alt="The Cognitum One Seed dock sitting on top of a Mac Mini host."
                   fill className="object-cover" sizes="320px" />
               </div>
             </details>
@@ -250,8 +250,8 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
         </h2>
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           <div className="lg:col-span-7 space-y-5 text-[16px] leading-[1.7] text-slate-300 order-2 lg:order-1">
-            <p>ChatGPT answers from what it was trained on months ago. Your Appliance does something different: <em className="text-amber-300 not-italic">it goes out and watches actual videos for you</em> — like fifteen hours of YouTube on a topic that matters to you — and remembers every word.</p>
-            <p>Concrete example: you want to actually plan your own retirement at 45 instead of paying 1% to a guy reading from a script. Point your Appliance at the three best fee-only-advisor YouTube channels. It watches them all overnight. In the morning you ask &ldquo;what&rsquo;s the right monthly savings rate for my situation?&rdquo; and it answers — with cited timestamps from real experts — in under a second.</p>
+            <p>ChatGPT answers from what it was trained on months ago. Your Seed does something different: <em className="text-amber-300 not-italic">it goes out and watches actual videos for you</em> — like fifteen hours of YouTube on a topic that matters to you — and remembers every word.</p>
+            <p>Concrete example: you want to actually plan your own retirement at 45 instead of paying 1% to a guy reading from a script. Point your Seed at the three best fee-only-advisor YouTube channels. It watches them all overnight. In the morning you ask &ldquo;what&rsquo;s the right monthly savings rate for my situation?&rdquo; and it answers — with cited timestamps from real experts — in under a second.</p>
             <p>Same trick for day-trading, learning to weld, building a SaaS, planning a six-week trip through Southeast Asia. Anything where the answer lives across <em className="text-amber-300 not-italic">a lot of video by several experts</em> and you don&rsquo;t have time to watch it all.</p>
           </div>
           <div className="lg:col-span-5 order-1 lg:order-2">
@@ -260,7 +260,7 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
                 fill className="object-cover" sizes="(min-width: 1024px) 40vw, 100vw" />
             </div>
             <div className="mt-3 mono text-[10px] uppercase tracking-widest text-slate-500 text-center leading-relaxed">
-              raw video → distilled knowledge → vector recall<br/>all stored locally on your Appliance
+              raw video → distilled knowledge → vector recall<br/>all stored locally on your Seed
             </div>
           </div>
         </div>
@@ -280,9 +280,9 @@ function WelcomeStep({ onContinue }: { onContinue: () => void }) {
         </p>
         <FlowDiagram />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-3 mt-6">
-          <PlanStep n="1" title="Find your Appliance">We scan the network and locate the little box on your desk. ~10 seconds.</PlanStep>
+          <PlanStep n="1" title="Find your Seed">We scan the network and locate the little box on your desk. ~10 seconds.</PlanStep>
           <PlanStep n="2" title="Pick a topic">You tell us what you want to become an expert at. We&rsquo;ve got starters if you&rsquo;re not sure.</PlanStep>
-          <PlanStep n="3" title="Let it watch">Your Appliance pulls down the right YouTube videos, watches every minute, and stores it as vectors. ~10 minutes.</PlanStep>
+          <PlanStep n="3" title="Let it watch">Your Seed pulls down the right YouTube videos, watches every minute, and stores it as vectors. ~10 minutes.</PlanStep>
           <PlanStep n="4" title="Ask away">When it&rsquo;s done, you ask anything and it cites the exact video + timestamp.</PlanStep>
         </div>
       </section>
@@ -606,10 +606,10 @@ function SeedStep({ status, seedName, setSeedName, onPaired }: {
   return (
     <section>
       <h2 className="display text-[36px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-3">
-        Let&rsquo;s <em className="text-amber-300 italic">find</em> your Appliance.
+        Let&rsquo;s <em className="text-amber-300 italic">find</em> your Seed.
       </h2>
       <p className="text-slate-400 text-[15px] leading-relaxed mb-10 max-w-2xl">
-        Your Cognitum One Appliance broadcasts itself on your local network. One scan and we should see it. If you connected by USB, we&rsquo;ll fall back to the cable.
+        Your Cognitum One Seed broadcasts itself on your local network. One scan and we should see it. If you connected by USB, we&rsquo;ll fall back to the cable.
       </p>
 
       {status.seed.ip && phase === "idle" && (
@@ -623,7 +623,7 @@ function SeedStep({ status, seedName, setSeedName, onPaired }: {
           onClick={scan}
           className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-5 bg-amber-300 text-slate-950 font-semibold text-[17px] hover:bg-amber-200 transition rounded-[4px] shadow-lg shadow-amber-900/30"
         >
-          <span className="w-2 h-2 rounded-full bg-slate-950" /> Scan my network for the Appliance
+          <span className="w-2 h-2 rounded-full bg-slate-950" /> Scan my network for the Seed
         </button>
       )}
 
@@ -656,8 +656,8 @@ function SeedStep({ status, seedName, setSeedName, onPaired }: {
           </div>
           <h3 className="text-lg font-semibold text-slate-100">No worries. Try one of these.</h3>
           <ul className="space-y-3 text-slate-300 text-[14px]">
-            <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Make sure your Appliance is plugged in and powered on.</li>
-            <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Confirm your Appliance is on the same WiFi network as this laptop.</li>
+            <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Make sure your Seed is plugged in and powered on.</li>
+            <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>Confirm your Seed is on the same WiFi network as this laptop.</li>
             <li className="flex items-start gap-3"><span className="text-amber-300 mt-0.5">·</span>If it&rsquo;s connected by USB, it&rsquo;s probably at <code className="font-mono text-amber-200">169.254.42.1</code>.</li>
           </ul>
           <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -709,7 +709,7 @@ function FoundCard({ ip, seedName, setSeedName, onPair }: {
 
       <h3 className="text-[24px] font-bold text-slate-50 mb-2">Hello, {seedName}.</h3>
       <p className="text-slate-300 text-[14px] mb-6 leading-relaxed">
-        Cognitum One Appliance · on your local network · offline-capable.
+        Cognitum One Seed · on your local network · offline-capable.
         <br/>
         <span className="text-slate-500">It&rsquo;s ready to learn whatever you point it at.</span>
       </p>
@@ -780,7 +780,7 @@ function TopicStep({ topics, onStarter, onCustom, onExisting }: {
         What do you want to be an <em className="text-amber-300 italic">expert</em> at?
       </h2>
       <p className="text-slate-400 text-[15px] leading-relaxed mb-3 max-w-2xl">
-        Pick a starter. Your Appliance will go pull 3–5 of the best YouTube channels on it, watch all 15+ hours, synthesize what they agree and disagree on, and hold it forever. About ten minutes of patience.
+        Pick a starter. Your Seed will go pull 3–5 of the best YouTube channels on it, watch all 15+ hours, synthesize what they agree and disagree on, and hold it forever. About ten minutes of patience.
       </p>
       <p className="text-slate-500 text-[13px] leading-relaxed mb-10 max-w-2xl italic">
         Tip: the more specific your topic, the more uncanny the answers. &ldquo;Day trading&rdquo; is mush. &ldquo;Day trading the SPY with 0DTE options&rdquo; will get you a real expert.
@@ -954,7 +954,7 @@ function IngestStep({ topic, seedName, onDone }: {
         BUILDING YOUR {topic.title.toUpperCase()} EXPERT
       </div>
       <h2 className="display text-[36px] sm:text-[44px] leading-[1.1] text-slate-50 font-normal mb-2">
-        Your Appliance is <em className="text-amber-300 italic">studying</em>.
+        Your Seed is <em className="text-amber-300 italic">studying</em>.
       </h2>
       <p className="text-slate-400 text-[15px] mb-10 max-w-2xl">
         Grab a coffee. {seedName} is fetching videos, transcribing every word, and distilling each one into vectors. About ten minutes of patience for years of expertise.
@@ -983,7 +983,7 @@ function IngestStep({ topic, seedName, onDone }: {
           </div>
           {videos.length === 0 ? (
             <div className="border border-slate-800 border-dashed rounded-[6px] p-8 text-center">
-              <div className="text-slate-500 text-sm">Videos will appear here as your Appliance processes them…</div>
+              <div className="text-slate-500 text-sm">Videos will appear here as your Seed processes them…</div>
             </div>
           ) : (
             <div className="grid sm:grid-cols-2 gap-2">

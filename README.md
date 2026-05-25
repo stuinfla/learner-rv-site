@@ -13,7 +13,7 @@ The page talks to a local bridge (the `learn ui` Axum server) over `http://127.0
 
 Browsers exempt `localhost` from mixed-content blocking, so an HTTPS Vercel origin can
 talk to an HTTP localhost endpoint. The bridge proxies all Seed traffic (mDNS discovery,
-pairing, ingest, push, ask) so the browser never has to reach the Appliance directly.
+pairing, ingest, push, ask) so the browser never has to reach the Seed directly.
 
 ## User flow
 

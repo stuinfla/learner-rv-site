@@ -130,7 +130,7 @@ export function CitedAnswerDemo() {
               <em className="cream italic">Click a citation.</em>
             </h2>
             <p className="mt-6 text-slate-400 text-[15px] leading-[1.7]">
-              Four knowledge bases the Appliance could host at once. Every answer cites the exact second of the source it came from — not a paraphrase, not a summary, the actual moment.
+              Four knowledge bases the Seed could host at once. Every answer cites the exact second of the source it came from — not a paraphrase, not a summary, the actual moment.
             </p>
 
             {/* Topic tabs */}

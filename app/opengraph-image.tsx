@@ -197,7 +197,7 @@ export default async function OpengraphImage() {
             }}
           >
             <div style={{ width: 6, height: 6, background: "#34d399", borderRadius: 999 }} />
-            Cognitum One Appliance · now shipping
+            Cognitum One Seed · now shipping
           </div>
         </div>
       </div>
