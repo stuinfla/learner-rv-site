@@ -3,7 +3,10 @@ import Image from "next/image";
 import { COGNITUM_LEARN_VERSION } from "./version";
 import { CitedAnswerDemo } from "./cited-answer-demo";
 
-const INSTALL_CMD = "cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli";
+const LATEST_RELEASE_URL = "https://github.com/stuinfla/cognitum-learn/releases/latest";
+const CARGO_INSTALL_CMD = "cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli";
+const BREW_DEPS_CMD = "brew install yt-dlp ffmpeg";
+const APT_DEPS_CMD = "sudo apt install yt-dlp ffmpeg";
 
 export default function Home() {
   return (
@@ -474,34 +477,43 @@ function Install() {
       <div className="max-w-[1280px] mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <Eyebrow>FIVE MINUTES</Eyebrow>
+            <Eyebrow>THREE MINUTES</Eyebrow>
             <h2 className="display mt-5 text-[36px] sm:text-[48px] leading-[1.05] text-slate-50 font-normal">
               Install once.<br/>
               <em className="cream italic">Run for years.</em>
             </h2>
-            <div className="mt-6 inline-flex items-center gap-2 mono text-[11px] uppercase tracking-widest text-amber-300/90 border border-amber-500/30 bg-amber-500/5 px-3 py-1.5 rounded-[3px]">
-              <span className="w-1.5 h-1.5 bg-amber-400" />
-              today: developers only · brew + npx land in v0.5
+            <div className="mt-6 inline-flex items-center gap-2 mono text-[11px] uppercase tracking-widest text-emerald-300/90 border border-emerald-500/30 bg-emerald-500/5 px-3 py-1.5 rounded-[3px]">
+              <span className="w-1.5 h-1.5 bg-emerald-400" />
+              prebuilt binaries · macOS · Linux · Windows
             </div>
             <p className="mt-5 text-slate-400 text-[17px] leading-[1.7]">
-              <span className="mono text-amber-200">cognitum-learn</span> is a pure-Rust workspace. Right now installing means <a className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2" href="https://rustup.rs" target="_blank" rel="noreferrer">the Rust toolchain</a> + a ~3-minute compile. Pre-built binaries for everyone else are in flight.
+              <span className="mono text-amber-200">cognitum-learn</span> is a single self-contained binary. Download for your platform, install two system tools, and you&rsquo;re running the local dashboard in three minutes — no Rust toolchain required.
             </p>
             <p className="mt-6 mono text-[11px] uppercase tracking-widest text-slate-400 leading-relaxed">
-              compiles in ~3-5 min · installs to ~/.cargo/bin/ · no system packages touched
+              binary ~17 MB · launches at 127.0.0.1:7878 · zero cloud
             </p>
           </div>
 
           <div className="lg:col-span-7 space-y-4">
-            <InstallCard step="1" title="Install Rust (skip if you have it)">
-              <CodeLine>curl --proto &apos;=https&apos; --tlsv1.2 -sSf https://sh.rustup.rs | sh</CodeLine>
+            <InstallCard step="1" title="Install cognitum-learn">
+              <p className="mb-3 text-slate-400 text-[13px] leading-relaxed">
+                If you have Rust installed, one command — cargo fetches everything from GitHub. No clone, no path-tweaks.
+              </p>
+              <CodeLine>{CARGO_INSTALL_CMD}</CodeLine>
+              <p className="mt-3 mono text-[11px] text-slate-500 leading-relaxed">
+                No Rust? <a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">Download a prebuilt binary</a> for macOS · Linux x86_64 · Linux aarch64 · Windows.
+              </p>
             </InstallCard>
-            <InstallCard step="2" title="Install cognitum-learn from source">
-              <CodeLine>{INSTALL_CMD}</CodeLine>
+            <InstallCard step="2" title="Install yt-dlp + ffmpeg">
+              <CodeLine>{BREW_DEPS_CMD}</CodeLine>
+              <p className="mt-3 mono text-[11px] text-slate-500 leading-relaxed">
+                on Linux: <span className="text-slate-300">{APT_DEPS_CMD}</span>
+              </p>
             </InstallCard>
-            <InstallCard step="3" title="Start the local bridge">
-              <CodeLine>learn ui</CodeLine>
+            <InstallCard step="3" title="Start the local dashboard">
+              <CodeLine>learn doctor && learn ui</CodeLine>
               <p className="mt-3 text-slate-400 text-[13px] leading-relaxed">
-                Opens a browser at <span className="mono text-amber-200">http://127.0.0.1:7878</span>. Scans your network for your Seed automatically. From there, drive everything from <Link href="/start" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">this site&rsquo;s dashboard</Link> — it talks to your bridge over localhost, never the cloud.
+                <span className="mono text-amber-200">learn doctor</span> verifies the deps and auto-downloads the embedding model (~130 MB, one-time). <span className="mono text-amber-200">learn ui</span> opens the dashboard at <span className="mono text-amber-200">http://127.0.0.1:7878/visual</span> — paste a YouTube URL or just say what you want to learn.
               </p>
             </InstallCard>
           </div>
