@@ -206,7 +206,7 @@ function BrainVectors() {
               <p>Ask the Seed anything later. The right fingerprints light up in milliseconds. You get the answer with timestamps you can click through and verify.</p>
             </div>
             <blockquote className="display mt-10 text-[20px] sm:text-[24px] italic leading-[1.4] text-amber-200 border-l-2 border-amber-300 pl-5">
-              1,024 numbers per moment. Hundreds of thousands per topic. Brain-style recall on a device the size of your wallet.
+              384 numbers per moment. Hundreds of thousands per topic. Brain-style recall on a device the size of your wallet.
             </blockquote>
           </div>
         </div>
