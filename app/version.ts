@@ -1,1 +1,1 @@
-export const COGNITUM_LEARN_VERSION = "v0.5.4";
+export const COGNITUM_LEARN_VERSION = "v0.5.5";
