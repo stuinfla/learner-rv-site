@@ -210,6 +210,30 @@ function BrainVectors() {
             </blockquote>
           </div>
         </div>
+
+        {/* Learning flywheel — what happens to knowledge over time */}
+        <div className="mt-16 pt-12 border-t border-slate-800">
+          <div className="grid lg:grid-cols-12 gap-10 items-center">
+            <div className="lg:col-span-5">
+              <Eyebrow warm>HOW KNOWLEDGE COMPOUNDS</Eyebrow>
+              <h3 className="display mt-5 text-[26px] sm:text-[32px] leading-[1.15] text-slate-50 font-normal">
+                Every question makes the next answer sharper.<br/>
+                <em className="cream italic">Your Seed learns how you learn.</em>
+              </h3>
+              <p className="mt-5 text-[15px] leading-[1.7] text-slate-400">
+                Each time you ask and click a citation, the SONA per-topic adapter quietly notes which chunks were useful and which weren&rsquo;t. Over weeks, the same KB gets faster, more relevant, more <em className="text-amber-300 not-italic">yours</em> — without you ever leaving the loop.
+              </p>
+            </div>
+            <div className="lg:col-span-7 rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-4">
+              <img
+                src="/svg/learning-flywheel.svg"
+                alt="Learning flywheel — five stages cycling: you ask a question, Seed retrieves a cited answer, you read it and click a citation, the SONA adapter learns which chunks won, and the next answer is a little sharper."
+                className="w-full h-auto"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -730,6 +754,16 @@ function LiveWalkthrough() {
           </div>
         </div>
 
+        {/* At-a-glance system diagram — YOU → BUILD/CHAT/VOICE → Seed */}
+        <div className="mb-6 rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-4">
+          <img
+            src="/svg/top-level-invocation.svg"
+            alt="At a glance: YOU pick a topic, then BUILD on your Mac, CHAT from your computer, or use VOICE anywhere in your home — all routing to one Cognitum One Seed that holds the knowledge."
+            className="w-full h-auto"
+            loading="lazy"
+          />
+        </div>
+
         {/* Pipeline SVG strip — the 4-step header (light-themed asset on a dark card to soften) */}
         <div className="mb-10 rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-4">
           <img
@@ -843,6 +877,16 @@ function DataFlow() {
               Your Mac does the temporary work — downloading, watching, learning. Your <span className="text-emerald-300">Cognitum One Seed</span> gets the permanent result: one signed file that holds the whole knowledge base, ready to answer questions on-device, offline, forever.
             </p>
           </div>
+        </div>
+
+        {/* Visual pipeline diagram — the full ingest journey at a glance */}
+        <div className="mb-10 rounded-[6px] overflow-hidden border border-slate-800 bg-slate-50/[0.02] p-4">
+          <img
+            src="/svg/ingest-pipeline.svg"
+            alt="The eight-stage ingest pipeline: a source URL flows through ACQUIRE, SMART FRAME DECISION, TRANSCRIBE, CHUNK, EMBED, INDEX, AUTO-SUMMARY, and lands as a signed .rvf knowledge file on your Cognitum One Seed."
+            className="w-full h-auto"
+            loading="lazy"
+          />
         </div>
 
         {/* Compute-zone labels above the pipeline (desktop only) */}
