@@ -488,25 +488,45 @@ function ErrorPanel({ title, hint, onRetry, onBack }: {
   );
 }
 
+// Detect the user's OS from the User-Agent so we can default to the right install tab.
+// Runs only in the browser (Offline is a client component already). SSR-safe via the
+// initial "mac" default — useEffect re-picks once `navigator` is available.
+type InstallTab = "mac" | "windows" | "linux";
+
+function detectPlatform(): InstallTab {
+  if (typeof navigator === "undefined") return "mac";
+  const ua = navigator.userAgent.toLowerCase();
+  const plat = (navigator.platform || "").toLowerCase();
+  if (plat.includes("mac") || ua.includes("mac os") || ua.includes("macintosh")) return "mac";
+  if (plat.includes("win") || ua.includes("windows")) return "windows";
+  if (plat.includes("linux") || ua.includes("linux") || ua.includes("x11")) return "linux";
+  return "mac";
+}
+
 function Offline() {
-  const [tab, setTab] = useState<"cargo" | "brew" | "download">("cargo");
+  // Default to "mac" for SSR; the effect below corrects to the real platform on mount.
+  const [tab, setTab] = useState<InstallTab>("mac");
+  useEffect(() => {
+    setTab(detectPlatform());
+  }, []);
+
   return (
     <section className="mt-10 border border-slate-800 bg-slate-900/40 rounded-[6px] p-7">
       <div className="font-mono text-[11px] uppercase tracking-widest text-amber-300 flex items-center gap-3 mb-4">
         <span className="inline-block w-4 h-px bg-amber-300" />
         ONE-TIME SETUP · STEP 1 OF 4
       </div>
-      <h2 className="text-2xl sm:text-3xl font-bold text-slate-50 mb-3 tracking-tight">Let&rsquo;s get your local bridge running.</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold text-slate-50 mb-3 tracking-tight">Let&rsquo;s get cognitum-learn on your Mac.</h2>
       <p className="text-slate-300 text-[15px] leading-relaxed mb-6 max-w-2xl">
-        This dashboard talks to a tiny CLI you run on your own machine — that&rsquo;s how nothing leaves your network. Pick your preferred install method. Takes about three minutes. The page connects automatically once it&rsquo;s running.
+        This dashboard talks to a tiny app you run on your own machine — that&rsquo;s how nothing leaves your network. Download for your platform below. Takes about three minutes. The page connects automatically once it&rsquo;s running.
       </p>
 
-      {/* Tabs — short on mobile, full on desktop */}
+      {/* Tabs — Mac-first. Auto-detect picks the right one on mount. */}
       <div className="flex border-b border-slate-800 mb-5 overflow-x-auto">
         {[
-          { id: "brew" as const, short: "Homebrew", long: "Homebrew · macOS" },
-          { id: "cargo" as const, short: "Cargo", long: "Cargo · cross-platform" },
-          { id: "download" as const, short: "Download", long: "Download binary" },
+          { id: "mac" as const, short: "Mac", long: "Download for Mac" },
+          { id: "windows" as const, short: "Windows", long: "Windows" },
+          { id: "linux" as const, short: "Linux", long: "Linux" },
         ].map((t) => (
           <button
             key={t.id}
@@ -519,38 +539,116 @@ function Offline() {
             <span className="hidden sm:inline">{t.long}</span>
           </button>
         ))}
+        {/* Homebrew — disabled until the formula actually ships. Stays in the tab strip
+            so returning users see the roadmap, but it's not clickable. */}
+        <span
+          aria-disabled="true"
+          title="Homebrew formula is in the pipeline"
+          className="px-3 sm:px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest border-b-2 border-transparent -mb-px whitespace-nowrap flex-none text-slate-600 cursor-not-allowed flex items-center gap-2"
+        >
+          <span>Homebrew</span>
+          <span className="text-[9px] px-1.5 py-0.5 rounded-[2px] bg-slate-800 text-slate-400 border border-slate-700">SOON</span>
+        </span>
       </div>
 
-      {tab === "brew" && (
-        <div className="space-y-3">
-          <CodeBlock>brew install stuinfla/tap/cognitum-learn  # coming soon — use Cargo for now</CodeBlock>
-          <p className="text-slate-500 text-xs">Homebrew formula is in the pipeline. Use the Cargo tab today.</p>
+      {tab === "mac" && (
+        <div className="space-y-4">
+          <ol className="space-y-3 text-[15px] text-slate-200 leading-relaxed list-decimal pl-5 marker:text-amber-300/70 marker:font-mono">
+            <li>
+              <a
+                href="https://github.com/stuinfla/cognitum-learn/releases/latest"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 mt-1 px-5 py-3 bg-amber-300 text-slate-950 font-semibold hover:bg-amber-200 transition rounded-[4px]"
+              >
+                Download for Mac (.pkg) <span aria-hidden>↗</span>
+              </a>
+              <div className="text-slate-500 text-xs mt-2">
+                Apple Silicon. The Releases page also lists Intel and the raw tarball.
+              </div>
+            </li>
+            <li>Double-click the <code className="font-mono text-amber-200">.pkg</code> to install.</li>
+            <li>
+              Open Terminal and run:
+              <CodeBlock>learn ui</CodeBlock>
+            </li>
+          </ol>
+          <details className="mt-3 group">
+            <summary className="cursor-pointer text-slate-400 text-[13px] hover:text-amber-300 transition list-none flex items-center gap-2 select-none">
+              <span className="text-amber-300 transition-transform duration-200 group-open:rotate-45 text-base leading-none">+</span>
+              About yt-dlp and ffmpeg (auto-handled)
+            </summary>
+            <p className="mt-2 text-slate-500 text-[13px] leading-relaxed pl-6">
+              <code className="font-mono text-amber-200">learn ui</code> runs <code className="font-mono text-amber-200">learn doctor</code> first. If
+              <code className="font-mono text-amber-200"> yt-dlp</code> or <code className="font-mono text-amber-200">ffmpeg</code> are missing, it asks
+              for consent and installs them via Homebrew. No manual steps unless you decline.
+            </p>
+          </details>
+          <details className="mt-1 group">
+            <summary className="cursor-pointer text-slate-400 text-[13px] hover:text-amber-300 transition list-none flex items-center gap-2 select-none">
+              <span className="text-amber-300 transition-transform duration-200 group-open:rotate-45 text-base leading-none">+</span>
+              Advanced · I have Rust installed
+            </summary>
+            <div className="mt-2 space-y-2 pl-6">
+              <p className="text-slate-500 text-[13px] leading-relaxed">
+                Skip the download — install from source with Cargo. Takes 3–5 min to compile; binary lands in <code className="font-mono text-amber-200">~/.cargo/bin/</code>.
+              </p>
+              <CodeBlock>cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli</CodeBlock>
+              <p className="text-slate-500 text-[12px]">No Rust? <code className="font-mono text-amber-200">curl --proto &apos;=https&apos; --tlsv1.2 -sSf https://sh.rustup.rs | sh</code></p>
+            </div>
+          </details>
         </div>
       )}
-      {tab === "cargo" && (
-        <div className="space-y-3">
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-1.5">First — install Rust if you don&rsquo;t have it</div>
-            <CodeBlock>curl --proto &apos;=https&apos; --tlsv1.2 -sSf https://sh.rustup.rs | sh</CodeBlock>
-          </div>
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-1.5 mt-3">Then — install cognitum-learn</div>
-            <CodeBlock>cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli</CodeBlock>
-          </div>
-          <div>
-            <div className="font-mono text-[10px] uppercase tracking-widest text-slate-400 mb-1.5 mt-3">Finally — start the bridge</div>
-            <CodeBlock>learn ui</CodeBlock>
-            <p className="text-slate-500 text-xs mt-2">Compiles in 3–5 min. Installs a <code className="font-mono text-amber-200">learn</code> binary to ~/.cargo/bin/.</p>
-          </div>
+
+      {tab === "windows" && (
+        <div className="space-y-4">
+          <ol className="space-y-3 text-[15px] text-slate-200 leading-relaxed list-decimal pl-5 marker:text-amber-300/70 marker:font-mono">
+            <li>
+              <a
+                href="https://github.com/stuinfla/cognitum-learn/releases/latest"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 mt-1 px-5 py-3 bg-amber-300 text-slate-950 font-semibold hover:bg-amber-200 transition rounded-[4px]"
+              >
+                Download for Windows (.zip) <span aria-hidden>↗</span>
+              </a>
+              <div className="text-slate-500 text-xs mt-2">x86_64. Unzip and put <code className="font-mono text-amber-200">learn.exe</code> on your PATH.</div>
+            </li>
+            <li>
+              From PowerShell:
+              <CodeBlock>learn ui</CodeBlock>
+            </li>
+            <li>
+              You&rsquo;ll need <code className="font-mono text-amber-200">yt-dlp</code> and <code className="font-mono text-amber-200">ffmpeg</code>. If you have <a className="text-amber-300 hover:underline" href="https://github.com/microsoft/winget-cli" target="_blank" rel="noreferrer">winget</a>:
+              <CodeBlock>winget install yt-dlp.yt-dlp Gyan.FFmpeg</CodeBlock>
+            </li>
+          </ol>
         </div>
       )}
-      {tab === "download" && (
-        <div className="space-y-3">
-          <p className="text-slate-400 text-[14px]">Grab a pre-built binary for your platform.</p>
-          <a href="https://github.com/stuinfla/cognitum-learn/releases/latest" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 px-5 py-3 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
-            Open GitHub Releases <span aria-hidden>↗</span>
-          </a>
-          <p className="text-slate-500 text-xs">Download the right tarball, extract <code className="font-mono text-amber-200">learn</code>, and put it on your PATH. Then run <code className="font-mono text-amber-200">learn ui</code>.</p>
+
+      {tab === "linux" && (
+        <div className="space-y-4">
+          <ol className="space-y-3 text-[15px] text-slate-200 leading-relaxed list-decimal pl-5 marker:text-amber-300/70 marker:font-mono">
+            <li>
+              <a
+                href="https://github.com/stuinfla/cognitum-learn/releases/latest"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 mt-1 px-5 py-3 bg-amber-300 text-slate-950 font-semibold hover:bg-amber-200 transition rounded-[4px]"
+              >
+                Download for Linux (.tar.gz) <span aria-hidden>↗</span>
+              </a>
+              <div className="text-slate-500 text-xs mt-2">x86_64 and aarch64 tarballs on the Releases page.</div>
+            </li>
+            <li>
+              Extract and install:
+              <CodeBlock>tar xzf cognitum-learn-*.tar.gz && sudo mv learn /usr/local/bin/</CodeBlock>
+            </li>
+            <li>
+              Install deps and launch:
+              <CodeBlock>sudo apt install yt-dlp ffmpeg && learn ui</CodeBlock>
+            </li>
+          </ol>
         </div>
       )}
 

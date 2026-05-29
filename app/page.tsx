@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { COGNITUM_LEARN_VERSION } from "./version";
+import { LiveVersion } from "./live-version";
 import { CitedAnswerDemo } from "./cited-answer-demo";
 
 const LATEST_RELEASE_URL = "https://github.com/stuinfla/cognitum-learn/releases/latest";
@@ -38,7 +39,7 @@ function SiteHeader() {
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <BrandMark className="w-7 h-7 flex-none" />
           <span className="font-medium tracking-tight text-slate-100 whitespace-nowrap">cognitum-learn</span>
-          <span className="mono text-[10px] text-slate-400 uppercase tracking-widest whitespace-nowrap" data-version>{COGNITUM_LEARN_VERSION}</span>
+          <LiveVersion className="mono text-[10px] text-slate-400 uppercase tracking-widest whitespace-nowrap" />
         </div>
         <nav className="flex items-center gap-4 sm:gap-7 mono text-[11px] sm:text-[12px] uppercase tracking-widest">
           <a href="#brain" className="text-slate-500 hover:text-amber-300 transition hidden md:inline">How it remembers</a>
@@ -112,7 +113,7 @@ function Hero() {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent">
                   <div className="mono text-[10px] uppercase tracking-widest text-amber-200 flex items-center gap-2">
                     <span className="inline-block w-3 h-px bg-amber-300/70" />
-                    Cognitum One Seed · sized to live next to your machine
+                    Runs on your Mac today. Free. No account. Optional hardware available.
                   </div>
                 </div>
               </div>
@@ -121,7 +122,7 @@ function Hero() {
 
           {/* COPY second on mobile (order-2), first on desktop (lg:order-1) — slightly narrower */}
           <div className="lg:col-span-5 order-2 lg:order-1">
-            <Eyebrow>VIDEOS → CITED ANSWERS · ON YOUR HARDWARE</Eyebrow>
+            <Eyebrow>Watch hours of YouTube for you. Answers what you ask, with timestamps.</Eyebrow>
             <h1 className="display mt-5 text-[32px] sm:text-[40px] lg:text-[52px] leading-[1.05] tracking-[-0.02em] text-slate-50 font-normal">
               Turn any topic into an in-house <em className="cream italic" style={{ fontVariationSettings: '"SOFT" 100, "WONK" 1' }}>expert</em> you can ask anything.
             </h1>
@@ -129,17 +130,20 @@ function Hero() {
               Point it at a YouTube channel, a podcast feed, a stack of PDFs. It watches every minute, transcribes every word, and turns it into a searchable knowledge base — answering your questions with <em className="text-amber-300 not-italic">citations back to the exact second in the exact source</em>. No cloud. No subscription. Your knowledge, on your hardware.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
+              {/* TODO(stuart): once a 12-second demo GIF/MP4 ships, swap this anchor target to it
+                  (e.g. /demo.mp4 or a <dialog>-style lightbox). For now it jumps to the live
+                  walkthrough section, which is the closest thing to a moving demo on-page. */}
               <a href="#walkthrough" className="inline-flex items-center gap-2 px-6 py-3.5 bg-amber-300 text-slate-950 font-medium hover:bg-amber-200 transition rounded-[4px]">
-                See what runs <span aria-hidden>↓</span>
+                Watch the 12-second demo <span aria-hidden>↓</span>
               </a>
               <Link href="/start" className="inline-flex items-center gap-2 px-6 py-3.5 border border-slate-700 text-slate-100 font-medium hover:border-amber-300 hover:text-amber-300 transition rounded-[4px]">
-                Try the demo <span aria-hidden>→</span>
+                Try it on your Mac <span aria-hidden>→</span>
               </Link>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-2 mono text-[11px] uppercase tracking-widest text-slate-400">
               <span className="inline-flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-emerald-400 animate-pulse" />
-                <span>shipping <span className="text-emerald-300">{COGNITUM_LEARN_VERSION}</span></span>
+                <span>shipping <LiveVersion className="text-emerald-300" /></span>
               </span>
               <span className="text-slate-700">·</span>
               <span>pairs with the <a href="#hardware" className="text-amber-300/80 hover:text-amber-300 underline decoration-amber-500/30 underline-offset-2">Cognitum One Seed</a></span>
@@ -570,7 +574,19 @@ function CodeLine({ children }: { children: string }) {
 // ── FAQ ───────────────────────────────────────────────────────────────────
 
 function FAQ() {
+  // Business-first ordering: the questions everybody asks before they trust the tech
+  // come first and are open by default. Technical FAQs are collapsed.
   const items = [
+    {
+      q: "What if I don&rsquo;t have a Seed yet?",
+      defaultOpen: true,
+      a: <>The CLI works standalone — your KB lives as a <span className="mono">.rvf</span> file on your laptop. Without a Seed you lose the always-on, sips-power, plug-and-share device. <a className="text-amber-300 hover:underline" href="https://cognitum.one">Get one →</a></>
+    },
+    {
+      q: "What does it cost?",
+      defaultOpen: true,
+      a: "The CLI and this dashboard are open source under PolyForm Noncommercial. The Cognitum One hardware is sold by cognitum.one. There is no recurring fee, ever."
+    },
     {
       q: "Can I really build an expert on anything?",
       a: <>If you can point <span className="mono text-amber-200">yt-dlp</span> at it, your Seed can learn it. YouTube channels, playlists, podcast RSS feeds, recorded lectures, local <span className="mono">.mp4 / .mkv</span> files. The more focused the topic, the more uncanny the result.</>
@@ -587,14 +603,6 @@ function FAQ() {
       q: "How does this page talk to my Seed?",
       a: <>It doesn&rsquo;t — directly. Browsers can&rsquo;t reach <span className="mono">169.254.x.x</span> from an HTTPS page (mixed-content blocking). This page&rsquo;s JavaScript talks to <span className="mono">127.0.0.1:7878</span> on <em className="text-amber-300 not-italic">your</em> machine (browsers exempt localhost). That bridge talks to your Seed. Vercel serves bytes; your content never crosses the public internet.</>
     },
-    {
-      q: "What if I don&rsquo;t have a Seed yet?",
-      a: <>The CLI works standalone — your KB lives as a <span className="mono">.rvf</span> file on your laptop. Without a Seed you lose the always-on, sips-power, plug-and-share device. <a className="text-amber-300 hover:underline" href="https://cognitum.one">Get one →</a></>
-    },
-    {
-      q: "What does it cost?",
-      a: "The CLI and this dashboard are open source under PolyForm Noncommercial. The Cognitum One hardware is sold by cognitum.one. There is no recurring fee, ever."
-    },
   ];
   return (
     <section className="py-28 border-b border-slate-800">
@@ -608,8 +616,8 @@ function FAQ() {
             <p className="mt-5 text-slate-400 text-[15px] leading-[1.65]">No fluff. Click any.</p>
           </div>
           <div className="lg:col-span-8 space-y-3">
-            {items.map((it, idx) => (
-              <details key={it.q} open={idx < 2} className="group border border-slate-800 hover:border-slate-700 bg-slate-900/20 rounded-[4px]">
+            {items.map((it) => (
+              <details key={it.q} open={it.defaultOpen ?? false} className="group border border-slate-800 hover:border-slate-700 bg-slate-900/20 rounded-[4px]">
                 <summary className="cursor-pointer p-5 flex items-start justify-between gap-4 text-slate-100 font-medium text-[15px] list-none">
                   <span>{it.q}</span>
                   <span className="mono text-amber-300 transition-transform duration-300 ease-out group-open:rotate-45 text-xl leading-none flex-none">+</span>
@@ -670,7 +678,7 @@ function SiteFooter() {
         <div className="flex items-center gap-3">
           <BrandMark className="w-5 h-5" />
           <span className="mono text-[11px] uppercase tracking-widest text-slate-400">
-            cognitum-learn <span data-version-footer>{COGNITUM_LEARN_VERSION}</span> · open source
+            cognitum-learn <LiveVersion /> · open source
           </span>
         </div>
         <div className="flex items-center gap-6 mono text-[11px] uppercase tracking-widest text-slate-400">
