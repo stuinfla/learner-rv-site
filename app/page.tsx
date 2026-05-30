@@ -5,6 +5,10 @@ import { LiveVersion } from "./live-version";
 import { CitedAnswerDemo } from "./cited-answer-demo";
 
 const LATEST_RELEASE_URL = "https://github.com/stuinfla/cognitum-learn/releases/latest";
+// Mac-first canonical one-liner — mirrors the README quickstart. Downloads the
+// Apple Silicon release tarball and runs its install.sh. No Rust required.
+const MAC_INSTALL_CMD =
+  'T=$(mktemp -d) && curl -L https://github.com/stuinfla/cognitum-learn/releases/latest/download/learn-aarch64-apple-darwin.tar.gz | tar xz -C "$T" && "$T/learn-aarch64-apple-darwin/install.sh"';
 const CARGO_INSTALL_CMD = "cargo install --git https://github.com/stuinfla/cognitum-learn learn-cli";
 const BREW_DEPS_CMD = "brew install yt-dlp ffmpeg";
 const APT_DEPS_CMD = "sudo apt install yt-dlp ffmpeg";
@@ -525,12 +529,24 @@ function Install() {
           <div className="lg:col-span-7 space-y-4">
             <InstallCard step="1" title="Install cognitum-learn">
               <p className="mb-3 text-slate-400 text-[13px] leading-relaxed">
-                If you have Rust installed, one command — cargo fetches everything from GitHub. No clone, no path-tweaks.
+                On a Mac (Apple Silicon), one command downloads the prebuilt binary and installs it. <em className="text-amber-300 not-italic">No Rust toolchain required.</em>
               </p>
-              <CodeLine>{CARGO_INSTALL_CMD}</CodeLine>
+              <CodeLine>{MAC_INSTALL_CMD}</CodeLine>
               <p className="mt-3 mono text-[11px] text-slate-500 leading-relaxed">
-                No Rust? <a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">Download a prebuilt binary</a> for macOS · Linux x86_64 · Linux aarch64 · Windows.
+                Intel Mac, Linux, or Windows? <a href={LATEST_RELEASE_URL} target="_blank" rel="noreferrer" className="text-amber-300 hover:text-amber-200 underline decoration-amber-500/40 underline-offset-2">Grab a prebuilt binary</a> for your platform.
               </p>
+              <details className="mt-3 group/adv">
+                <summary className="cursor-pointer mono text-[11px] uppercase tracking-widest text-slate-500 hover:text-amber-300 transition list-none flex items-center gap-2 select-none">
+                  <span className="text-amber-300 transition-transform duration-200 group-open/adv:rotate-45 text-base leading-none">+</span>
+                  Advanced · I have Rust installed
+                </summary>
+                <div className="mt-2 space-y-2 pl-6">
+                  <p className="text-slate-500 text-[13px] leading-relaxed">
+                    Build from source with Cargo — fetches everything from GitHub, no clone or path-tweaks. Takes a few minutes to compile.
+                  </p>
+                  <CodeLine>{CARGO_INSTALL_CMD}</CodeLine>
+                </div>
+              </details>
             </InstallCard>
             <InstallCard step="2" title="Install yt-dlp + ffmpeg">
               <CodeLine>{BREW_DEPS_CMD}</CodeLine>

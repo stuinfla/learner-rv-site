@@ -574,6 +574,18 @@ function Offline() {
               <CodeBlock>learn ui</CodeBlock>
             </li>
           </ol>
+          <details className="mt-1 group">
+            <summary className="cursor-pointer text-slate-400 text-[13px] hover:text-amber-300 transition list-none flex items-center gap-2 select-none">
+              <span className="text-amber-300 transition-transform duration-200 group-open:rotate-45 text-base leading-none">+</span>
+              Prefer the terminal? One-line install (no Rust)
+            </summary>
+            <div className="mt-2 space-y-2 pl-6">
+              <p className="text-slate-500 text-[13px] leading-relaxed">
+                Same as the README quickstart — downloads the Apple Silicon binary and runs its installer.
+              </p>
+              <CodeBlock>{`T=$(mktemp -d) && curl -L https://github.com/stuinfla/cognitum-learn/releases/latest/download/learn-aarch64-apple-darwin.tar.gz | tar xz -C "$T" && "$T/learn-aarch64-apple-darwin/install.sh"`}</CodeBlock>
+            </div>
+          </details>
           <details className="mt-3 group">
             <summary className="cursor-pointer text-slate-400 text-[13px] hover:text-amber-300 transition list-none flex items-center gap-2 select-none">
               <span className="text-amber-300 transition-transform duration-200 group-open:rotate-45 text-base leading-none">+</span>
